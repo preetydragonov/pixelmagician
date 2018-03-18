@@ -25,7 +25,8 @@ SECRET_KEY = '!gf^()8k9g(^=4f17km#nw#$49qq0=3g&xa*2@vl@pe71t^p#y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['pixelmagician.db33ujf8c5.ap-northeast-2.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['pixelmagician.db33ujf8c5.ap-northeast-2.elasticbeanstalk.com',
+		 'pixelmagician-stg.db33ujf8c5.ap-northeast-2.elasticbeanstalk.com']
 
 
 # Application definition
