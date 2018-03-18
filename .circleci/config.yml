@@ -7,3 +7,16 @@ jobs:
        - checkout
        - run: echo "hello world"
 
+dependencies:
+  pre:
+    - sudo pip install awsebcli
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - bash ./setup-eb.sh
+      - eb deploy
+
+
+
