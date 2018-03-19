@@ -1,0 +1,18 @@
+h1 a {color: #FCA205;}
+input:-ms-input-placeholder {color:#a8a8a8;}
+input::-webkit-input-placeholder {color:#a8a8a8;}
+input::-moz-placeholder {color:#a8a8a8;}
+
+#search_box>center>form>input {
+        background-color: #fff;
+        border: 1px solid rgb(185,185,185);
+        border-radius: 1px;
+        border-top-color: rgb(160,160,160);
+        cursor: text;
+        font: 18px arial,sans-serif;
+        height: 36px;
+        line-height: 36px;
+        max-width: 672px;
+        position: relative;
+        width: 428px;
+}
