@@ -3,7 +3,7 @@ input:-ms-input-placeholder {color:#a8a8a8;}
 input::-webkit-input-placeholder {color:#a8a8a8;}
 input::-moz-placeholder {color:#a8a8a8;}
 
-#search_box>center>form>input {
+#link_id {
         background-color: #fff;
         border: 1px solid rgb(185,185,185);
         border-radius: 1px;

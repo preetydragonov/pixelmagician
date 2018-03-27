@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def home(request):
-    return render(request, 'searchWord/home.html', {})
+    return render(request, 'searchWord/home_3.html', {})
 
 def pixelBoard(request):
     return render (request, 'searchWord/pixelBoard.html',{})
