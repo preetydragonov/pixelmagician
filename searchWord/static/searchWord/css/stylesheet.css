@@ -22,8 +22,6 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-  filter: grayscale(100%);
   margin: 0;
   padding: 0;
   border: 0;
@@ -136,8 +134,6 @@ strong {
 }
 
 img {
-  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-  filter: grayscale(100%);
   position: relative;
   margin: 0 auto;
   max-width: 739px;
@@ -152,8 +148,6 @@ img {
 }
 
 p img, .google-image-layout img {
-  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-  filter: grayscale(100%);
   display: inline;
   margin: 0;
   padding: 0;
@@ -431,12 +425,8 @@ Small Device Styles
 
 .google-image-layout img {
   visibility: hidden;
-  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-  filter: grayscale(100%);
 }
 
 .google-image-layout img.layout-completed {
   visibility: visible;
-  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-  filter: grayscale(100%);
 }
