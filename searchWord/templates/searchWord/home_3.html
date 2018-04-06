@@ -13,7 +13,6 @@
             <center>
 		<input type="text" id='link_id' onkeypress="if( event.keyCode==13 ){goTo();}" placeholder='검색해보세요'/>
 		<input type='button' id='link' value='Search' onClick='javascript:goTo();'>
-		<script type="text/javascript" src="{% static 'searchWord/js/search.js' %}"></script>
 		<script type="text/javascript">
 		function goTo(){
 			var textValue = document.getElementById("link_id").value;
