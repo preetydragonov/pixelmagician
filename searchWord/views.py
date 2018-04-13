@@ -1,13 +1,77 @@
 from __future__ import unicode_literals
 from django.shortcuts import render
-
-# Create your views here.
-
 from django.http import HttpResponse
+from PIL import Image
+import urllib.request
+import urllib.parse
+import io
+import random
+import json
 
 def home(request):
     return render(request, 'searchWord/home_3.html', {})
 
-def pixelBoard(request):
-    image_1 = "http://media-cache-ec0.pinimg.com/736x/d6/1f/6f/d61f6ff7dc676504170e6233fc6373e6.jpg"
-    return render (request, 'searchWord/index.html',{'image_1': image_1})
+def loading(request, user_id):
+    decoded_user_id = urllib.parse.unquote(user_id)
+    data = formatData(data=decoded_user_id, request="POST")
+    request_postImage = urllib.request.Request('https://gemq3v63g6.execute-api.ap-northeast-2.amazonaws.com/prod/image', data)
+    response_postImage = urllib.request.urlopen(request_postImage)
+    return render(request, 'searchWord/loading.html', {'user_id':decoded_user_id})
+
+def formatData(data, request):
+    formattedData = {
+        "Records": [{
+            "s3": {
+                "object": {
+                    "key": data,
+                },
+            "s3SchemaVersion": "1.0"
+            },
+        "awsRegion": "ap-northeast-2"
+        }]
+    }
+
+    if(request == 'POST'):
+        jsonFormattedData = json.dumps(formattedData)
+        encodedFormattedData = jsonFormattedData.encode('utf-8')
+        return encodedFormattedData
+    elif(request == 'GET'):
+        params = urllib.parse.urlencode(formattedData)
+        return params
+    else:
+        return null;
+
+def pixelBoard(request, user_id):
+    decoded_user_id = urllib.parse.unquote(user_id)
+    params = formatData(data=decoded_user_id, request="GET")
+    urls = urllib.request.urlopen("https://gemq3v63g6.execute-api.ap-northeast-2.amazonaws.com/prod/image/?"+params).read()
+
+    #changedImages = []
+    #for url in urls:
+    #    changedImages.append(getRandomPixeledImageFromImageURL(url))    
+     
+    return render (request, 'searchWord/index.html', {'images': urls})
+
+
+def getRandomPixeledImageFromImageURL(url):
+    requestedImage = urllib.request.urlopen(urllib.request.Request(url)).read()
+    image = Image.open(io.BytesIO(requestedImage))
+    pixel = image.load()
+    randomPixel = pixel[random.randint(0, image.size[0]), random.randint(0, image.size[1])]
+   
+    # Change Image Into One Pixel
+    #for i in range(image.size[0]):
+    #    for j in range(image.size[1]):
+    #        pixel[i,j] = randomPixel
+    
+    image = Image.new('RGB', (image.size[0], image.size[1]), 0)
+
+    # Saving the image to the Django response object:
+    response = HttpResponse(content_type='image/png')
+    image.save(response, 'PNG')
+    
+    return image
+    
+
+
+

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+    </head>
+    <body>
+	{{ user_id }}에는 어떤 색이 담겨있을까요?
+	<!--<script src="https://sdk.amazonaws.com/js/aws-sdk-2.224.1.min.js"></script>
+	<script src="{% static 'searchWord/js/postImagesToS3.js' %}" searched-word="{{user_id}}"></script>
+	<script src="{% static 'searchWord/js/goTo.js' %}"></script> -->
+	<script type="text/javascript" user-id={{user_id}}>
+		queryWord = document.currentScript.getAttribute('user-id');
+		setTimeout(function(){
+			location.replace("/board/"+ queryWord, '_self');
+		}, 3000);
+	</script>
+    </body>
+</html>

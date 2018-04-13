@@ -79,6 +79,7 @@
 
 		for (var i = 0 ; i < images.length; i++) {
 			img = images[i];
+			console.log(img);
 			img.style.width = height * parseInt(img.getAttribute('data-width')) / parseInt(img.getAttribute('data-height')) + 'px';
 			img.style.height = height + 'px';
 			img.style.marginRight = margin - 4 + 'px'; // -4 is the negative margin of the inline element

@@ -6,7 +6,6 @@
 		<meta charset='utf-8'>
 		<meta http-equiv="X-UA-Compatible" content="chrome=1">
 		<meta name="description" content="Google-image-layout : A library help you to build Google like Image Gallery">
-
 		<link rel="stylesheet" type="text/css" media="sreen" href="{% static 'searchWord/css/stylesheet.css' %}">
 		<title>Board</title>
 	</head>
@@ -27,7 +26,9 @@
 				<hr/>
 				<h4>A sample gallery - max height 150</h4>
 				<div class="google-image-layout" data-google-image-layout data-max-height="150">
-					<img src="{{ image_1 }}"/>
+					{% for image in images %}
+					    <img src="{{ image }}"/>
+					{% endfor %}
 					<img src="http://media-cache-ec0.pinimg.com/736x/3d/e7/9b/3de79b852892d20cc55c51a3d5bdea95.jpg"/>
 					<img src="http://media-cache-ak0.pinimg.com/236x/ef/c9/1f/efc91fba944f62dfff1f7ba8c68c354a.jpg"/>
 					<img src="http://media-cache-ak0.pinimg.com/236x/b0/c7/74/b0c7741ecb01dac741423164619160ef.jpg"/>
