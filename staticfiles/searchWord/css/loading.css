@@ -1,3 +1,35 @@
+@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+
+p {
+    text-align:center;
+}
+
+.container {
+  width: 70%;
+  height: 70%;
+  margin: 40px auto;
+}
+
+.outer {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+.inner {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.centered {
+  position: relative;
+  display: inline-block; 
+  width: 50%;
+  padding: 8em;
+  font-family: 'Nanum Pen Script', cursive, Serif, "돋움", dotum, "굴림", gulim, arial, helvetica, sans-serif;
+}
+
 #centeredImage {
     display: block;
     margin-left: auto;
