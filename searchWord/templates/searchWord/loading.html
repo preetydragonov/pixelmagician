@@ -2,9 +2,22 @@
 {% load static %}
 <html>
     <head>
+	<link rel="stylesheet" href="{% static 'searchWord/css/loading.css' %}">
     </head>
     <body>
-	{{ user_id }}에는 어떤 색이 담겨있을까요?
+	<div class="container">
+		<div class="outer">
+    			<div class="inner">
+      				<div class="centered">
+	    				<p>    
+					<img src="{% static "searchWord/images/fluid-loader.gif" %}" class="centeredImage" alt="My image" width="270" width="350"/></p>
+					<font size="6">
+					{{ user_id }}에는 어떤 색이 담겨있을까요?
+					</font>
+				</div>
+			</div>
+		</div>	
+	</div>
 	<!--<script src="https://sdk.amazonaws.com/js/aws-sdk-2.224.1.min.js"></script>
 	<script src="{% static 'searchWord/js/postImagesToS3.js' %}" searched-word="{{user_id}}"></script>
 	<script src="{% static 'searchWord/js/goTo.js' %}"></script> -->

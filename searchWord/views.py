@@ -43,14 +43,16 @@ def formatData(data, request):
 
 def pixelBoard(request, user_id):
     decoded_user_id = urllib.parse.unquote(user_id)
-    params = formatData(data=decoded_user_id, request="GET")
-    urls = urllib.request.urlopen("https://gemq3v63g6.execute-api.ap-northeast-2.amazonaws.com/prod/image/?"+params).read()
-
+    url = "https://gemq3v63g6.execute-api.ap-northeast-2.amazonaws.com/prod/image"
+    request_getImage = urllib.request.Request(url+"?key=" + decoded_user_id + ".json")
+    response_getImage = urllib.request.urlopen(request_getImage).read()
+    
+    imageUrls = json.loads(response_getImage)
     #changedImages = []
     #for url in urls:
     #    changedImages.append(getRandomPixeledImageFromImageURL(url))    
-     
-    return render (request, 'searchWord/index.html', {'images': urls})
+    aa = "<img src=\"http://lghttp.45413.nexcesscdn.net/801B14E/images/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/c/h/cheese-yellow-american.jpg\"/>" 
+    return render (request, 'searchWord/index.html', {'images': imageUrls[0:10]})
 
 
 def getRandomPixeledImageFromImageURL(url):
