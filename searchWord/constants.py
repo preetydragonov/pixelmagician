@@ -1,1 +1,5 @@
-HOME = 'searchWord/home_3.html'
+class APPNAME(object):
+    SEARCHWORD = "searchWord"
+
+class HTML(object):
+    HOME = "home.html"

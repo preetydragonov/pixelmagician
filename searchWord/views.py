@@ -7,9 +7,12 @@ import urllib.parse
 import io
 import random
 import json
+import .constants as CONST
 
 def home(request):
-    return render(request, 'searchWord/home.html', {})
+    return render(request, 
+                  CONST.APPNAME.SEARCHWORD + "/" + CONST.HTML.HOME
+                  , {})
 
 def loading(request, user_id):
     decoded_user_id = urllib.parse.unquote(user_id)
