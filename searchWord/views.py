@@ -9,8 +9,7 @@ import random
 import json
 
 def home(request):
-    return render(request, 'searchWord/loading.html',{})
-    #return render(request, 'searchWord/home_3.html', {})
+    return render(request, 'searchWord/home.html', {})
 
 def loading(request, user_id):
     decoded_user_id = urllib.parse.unquote(user_id)
