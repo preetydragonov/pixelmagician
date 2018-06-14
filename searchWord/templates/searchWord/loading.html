@@ -14,19 +14,19 @@
 	    				<p> 
 					<img src="{% static "searchWord/images/color-palette-city.jpg" %}" class="centeredImage" alt="My image" width="270" width="350"/></p>
 					<font size="6">
-						{{ user_id }}에는 어떤 색이 담겨있을까요?
+						{{ queryWord }}에는 어떤 색이 담겨있을까요?
 					</font>
 				</div>
 			</div>
 		</div>	
 	</div>
 	<!--<script src="https://sdk.amazonaws.com/js/aws-sdk-2.224.1.min.js"></script>
-	<script src="{% static 'searchWord/js/postImagesToS3.js' %}" searched-word="{{user_id}}"></script>
+	<script src="{% static 'searchWord/js/postImagesToS3.js' %}" searched-word="{{ queryWord }}"></script>
 	<script src="{% static 'searchWord/js/goTo.js' %}"></script> -->
-	<script type="text/javascript" user-id={{user_id}}>
-		queryWord = document.currentScript.getAttribute('user-id');
+	<script type="text/javascript" queryWordOnScript = {{ queryWord }}>
+		parsedQueryWord = document.currentScript.getAttribute('queryWordOnScript');
 		setTimeout(function(){
-			location.replace("/board/"+ queryWord, '_self');
+			location.replace("/board/"+parsedQueryWord, '_self');
 		}, 3000);
 	</script>
     </body>

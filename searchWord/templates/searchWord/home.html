@@ -4,12 +4,19 @@
 <html>
     <head>
         <title>enterance</title>
+	<meta charset=“UTF-8”>
+	<meta name=“viewport” content=“width=device-width, initial-scale=1.0”>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="{% static 'searchWord/css/home.css' %}">
+        <link rel="stylesheet" href="{% static 'searchWord/css/home3.css' %}">
     </head>
     <body>
-	<img src="{% static "searchWord/images/2000px-Google_2015_logo.svg.png" %}" alt="My image" width="100" width="200"/>
+	<div id=“contents”>
+            <section>
+		<p><img src="{% static "searchWord/images/2000px-Google_2015_logo.svg.png" %}" alt=“냥이”></p>
+            </section>
+	</div>
+	<div>
         <div id="search_box">
             <center>
 		<input type="text" id='link_id' onkeypress="if( event.keyCode==13 ){goTo();}" placeholder='검색해보세요'/>

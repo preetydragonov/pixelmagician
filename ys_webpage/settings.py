@@ -31,8 +31,6 @@ ALLOWED_HOSTS = ['pixelmagician.db33ujf8c5.ap-northeast-2.elasticbeanstalk.com',
                  '127.0.0.1',
                 ]
 
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -127,8 +125,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, "..", "www", "static")
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# ONLY FOR AWS ! hide 1 codeline below when locally developing
+#STATIC_ROOT = os.path.join(BASE_DIR, "..", "www", "static")
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "searchWord/static"),
