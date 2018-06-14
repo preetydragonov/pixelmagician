@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="{% static 'searchWord/css/home3.css' %}">
+	<script src="{% static 'searchWord/js/goTo.js' %}"></script>
     </head>
     <body>
 	<div id=“contents”>
@@ -21,14 +22,6 @@
             <center>
 		<input type="text" id='link_id' onkeypress="if( event.keyCode==13 ){goTo();}" placeholder='검색해보세요'/>
 		<input type='button' id='link' value='Search' onClick='javascript:goTo();'>
-		<script type="text/javascript">
-		function goTo(){
-			const textValue = document.getElementById("link_id").value;
-			const encoded_textValue = encodeURIComponent(textValue);
-			//window.open("{% url 'home' %}", '_self');
-			location.replace("/loading/"+encoded_textValue, '_self');
-			//window.open("http://www.google.com/search?q="+textValue+"&source=lnms&tbm=isch",'_self');
-		}</script>
 	    </center>
 	</div>
     </body>

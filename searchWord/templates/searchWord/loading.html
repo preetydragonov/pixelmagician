@@ -5,6 +5,7 @@
     <head>
 	<title>loading</title>
 	<link rel="stylesheet" href="{% static 'searchWord/css/loading.css' %}">
+	<script src="{% static 'searchWord/js/passWordToS3.js' %}" queryWordOnScript="{{ queryWord }}"></script>
     </head>
     <body>
 	<div class="container">
@@ -20,14 +21,5 @@
 			</div>
 		</div>	
 	</div>
-	<!--<script src="https://sdk.amazonaws.com/js/aws-sdk-2.224.1.min.js"></script>
-	<script src="{% static 'searchWord/js/postImagesToS3.js' %}" searched-word="{{ queryWord }}"></script>
-	<script src="{% static 'searchWord/js/goTo.js' %}"></script> -->
-	<script type="text/javascript" queryWordOnScript = {{ queryWord }}>
-		parsedQueryWord = document.currentScript.getAttribute('queryWordOnScript');
-		setTimeout(function(){
-			location.replace("/board/"+parsedQueryWord, '_self');
-		}, 3000);
-	</script>
     </body>
 </html>

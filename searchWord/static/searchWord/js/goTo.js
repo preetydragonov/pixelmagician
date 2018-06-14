@@ -5,3 +5,4 @@ function goTo(){
         location.replace("/loading/"+encoded_textValue, '_self');
         //window.open("http://www.google.com/search?q="+textValue+"&source=lnms&tbm=isch",'_self');
 }
+goTo();
