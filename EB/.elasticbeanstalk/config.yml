@@ -1,0 +1,24 @@
+branch-defaults:
+  default:
+    environment: pixelmagician-Dev
+    group_suffix: null
+  dev:
+    environment: pixelmagician-Dev
+  master:
+    environment: pixelmagician
+  stg:
+    environment: pixelmagician-Stg
+global:
+  application_name: ys_webpage
+  branch: null
+  default_ec2_keyname: null
+  default_platform: Python 3.6
+  default_region: ap-northeast-2
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: null
+  repository: null
+  sc: git
+  workspace_type: Application
