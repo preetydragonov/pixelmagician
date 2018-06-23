@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load static %}
+<html>
+    <head>
+	<title>loading</title>
+	<link rel="stylesheet" href="{% static 'searchWord/css/loading.css' %}">
+	<script src="{% static 'searchWord/js/passWordToS3.js' %}" queryWordOnScript="{{ queryWord }}"></script>
+    </head>
+    <body>
+	<div class="container">
+		<div class="outer">
+    			<div class="inner">
+      				<div class="centered">
+	    				<p> 
+					<img src="{% static "searchWord/images/color-palette-city.jpg" %}" class="centeredImage" alt="My image" width="270" width="350"/></p>
+					<font size="6">
+						{{ queryWord }}에는 어떤 색이 담겨있을까요?
+					</font>
+				</div>
+			</div>
+		</div>	
+	</div>
+    </body>
+</html>

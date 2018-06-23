@@ -27,10 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['pixelmagician.db33ujf8c5.ap-northeast-2.elasticbeanstalk.com',
 		 'pixelmagician-dev.db33ujf8c5.ap-northeast-2.elasticbeanstalk.com',
-		 'pixelmagician-stg.db33ujf8c5.ap-northeast-2.elasticbeanstalk.com'
+		 'pixelmagician-stg.db33ujf8c5.ap-northeast-2.elasticbeanstalk.com',
+                 '127.0.0.1',
                 ]
-
-
 
 # Application definition
 
@@ -41,7 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-]
+    #ONLY FOR AWS! hide 1 codeline below when locally developing
+    'storages',
+    'searchWord',
+    ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -58,7 +60,7 @@ ROOT_URLCONF = 'ys_webpage.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['searchWord/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,3 +124,29 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# ONLY FOR AWS ! hide 1 codeline below when locally developing
+#STATIC_ROOT = os.path.join(BASE_DIR, "..", "www", "static")
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "searchWord/static"),
+        ]
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+]
+
+    #ONLY FOR AWS! hide 4 codelines below when locally developing
+AWS_STORAGE_BUCKET_NAME = 'elasticbeanstalk-ap-northeast-2-285150183432'
+AWS_S3_REGION_NAME = 'ap-northeast-2'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+# Media files
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+

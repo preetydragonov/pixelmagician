@@ -1,0 +1,46 @@
+header {
+    padding: 0.8em;
+    color: #FFF;
+    font-size: 150%;
+    text-align: center;
+    background: #e14d43;
+}
+#contents {
+    max-width: 780px;
+    margin: 0 auto;
+    text-align: center;
+}
+#contents h2 {
+    margin: 2em 0 1em;
+    font-size: 120%;
+    color: #b49543;
+}
+#contents h2:before {
+    content: “▽ “;
+}
+/* 이미지를 자동으로 화면에 맞게 리사이즈 되도록 */
+img {
+    max-width: 100%; /* 이미지의 최대사이즈 */
+    width /***/: auto; /* IE8 */
+    height: auto;
+    vertical-align: bottom;
+}
+/* 이미지를 배경으로 지정하여 화면에 맞게 리사이즈 되도록 */
+.bg {
+    height: 0;
+    padding-top: 66.666%; /* 500px÷750px×100=66.666…% */
+    background: url(../img/pic02.jpg) no-repeat center;
+    background-size: contain;
+}
+/* 작은 화면용으로 이미지를 체인지（CSS） */
+@media screen and (max-width: 640px) {
+    .img01 {
+        height: 0;
+        padding-top: 69.531%; /* 445px÷640px×100=69.531…% */
+        background: url(../img/pic03_sp.jpg) no-repeat center;
+        background-size: contain;
+    }
+    .img01 img {
+        display: none; /* PC용 이미지를 보이지 않게 처리 */
+    }
+}
