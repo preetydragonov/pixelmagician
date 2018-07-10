@@ -98,28 +98,28 @@ def getRandomPixededImageURLFromOriginalImageURL(url):
 
     return key
 
-#def getRandomPixeledImageFromImageURL(url):
-#    #get newImage's pixel
-#    requestedImage = urllib.request.urlopen(urllib.request.Request(url)).read()
-#    requestedImageInByte = Image.open(io.BytesIO(requestedImage))
-#    pixels = requestedImageInByte.load()
-#    randomPixel = pixels[random.randint(0, requestedImageInByte.size[0]), random.randint(0, requestedImageInByte.size[1])]
+def getRandomPixeledImageFromImageURL(url):
+    #get newImage's pixel
+    requestedImage = urllib.request.urlopen(urllib.request.Request(url)).read()
+    requestedImageInByte = Image.open(io.BytesIO(requestedImage))
+    pixels = requestedImageInByte.load()
+    randomPixel = pixels[random.randint(0, requestedImageInByte.size[0]), random.randint(0, requestedImageInByte.size[1])]
 
     #get newImage's width and height
-#    width, height = requestedImageInByte.size
-#    rate = round(width/height, 2)
-#    newWidth = 100
-#    newHeight = int(100 * rate)
+    width, height = requestedImageInByte.size
+    rate = round(width/height, 2)
+    newWidth = 100
+    newHeight = int(100 * rate)
 
     #create newImage
-#    newImage = Image.new("RGB", (newWidth, newHeight), randomPixel)
-#
-#    #upload
-#    stream = io.BytesIO()
-#    newImage.save(stream, format="png")
-#    stream.seek(0)
-#    key = "testFileNew.png"
-#    s3.put_object(Bucket=bucket, Key=key, Body =stream,ContentType='image/png',ACL='public-read')
+    newImage = Image.new("RGB", (newWidth, newHeight), randomPixel)
+
+    #upload
+    stream = io.BytesIO()
+    newImage.save(stream, format="png")
+    stream.seek(0)
+    key = "testFileNew.png"
+    s3.put_object(Bucket=bucket, Key=key, Body =stream,ContentType='image/png',ACL='public-read')
 
 def hello(event, context):
     body = {
