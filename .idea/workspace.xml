@@ -5,11 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="079fa32f-1757-45cb-b66c-91564f7bbec3" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/choelinbeom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/choelinbeom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/choelinbeom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/APIs/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/APIs/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APIs/out.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/APIs/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/APIs/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/APIs/serverless.yml" beforeDir="false" afterPath="$PROJECT_DIR$/APIs/serverless.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EB/ys_webpage/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/EB/ys_webpage/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EB/searchWord/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/EB/searchWord/views.py" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -191,6 +192,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
