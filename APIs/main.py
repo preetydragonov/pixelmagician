@@ -1,9 +1,13 @@
 import json
 import urllib.parse
+from urllib.error import HTTPError
 import urllib.request
 import boto3
+import random
 import io
 from PIL import Image
+import ssl
+import imghdr
 
 s3 = boto3.client('s3')
 bucket = 'searched-words'
@@ -35,14 +39,14 @@ def google_images_get_html(queryWord):
     responseData = str(response.read())
 
 #    newly added 2 lines
-#    image_url_list = google_images_get_all_items(responseData)
+#    image_url_listders = {} = google_images_get_all_items(responseData)
 #    return image_url_list
-    image_url_list, pixeled_image_url_list = google_image_get_all_items(responseData)
-    return pixeled_image_url_list
+    image_url_list, pixeled_image_url_list = google_images_get_all_items(responseData)
+    return image_url_list
 
 def google_images_get_next_item(s):
     start_line = s.find('rg_di')
-    if start_line == -1:    #If no links are found then give an error!
+    if start_line == -1:    #If no links are found then give an errorponse = urllib.request.urlopen(request, context=context)
         end_quote = 0
         link = "no_links"
         return link, end_quote
@@ -53,73 +57,126 @@ def google_images_get_next_item(s):
         content_raw = str(s[start_content+6:end_content-1])
         return content_raw, end_content
 
+#check PIL supporting image format
+def checkIfImageFormatIsSupportedByPIL(imageFormat):
+    return imageFormat in ('image/png', 'image/jpeg', 'image/gif')
+
+def getImageFormat(response):
+    return response.headers['Content-Type'].split(';')[0].lower()
+
+def readResponse(response):
+    return response.read()
+
+def getResponse(url):
+    context = ssl._create_unverified_context()
+    headers = {}
+    headers['User-Agent'] = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"
+    try:
+        request = urllib.request.Request(url, headers = headers)
+        response = urllib.request.urlopen(request, context=context)
+        return response
+    except HTTPError as httpError:
+        print("error while opening url")
+        print("the error url is " + url)
+        raise httpError
+
 #Getting all links with the help of '_images_get_next_image'
 def google_images_get_all_items(page):
-    items = []
-    pixeledItems = []
+    originalUrls = []
+    pixeledUrls = []
     while True:
-        item, end_content = google_images_get_next_item(page)
-        if item == "no_links":
+        originalUrl, end_content = google_images_get_next_item(page)
+        if originalUrl == "no_links":
             break
         else:
-            items.append(item)      #Append all the links in the list named 'Links'
-            ##time.sleep(0.1)        #Timer could be used to slow down the request for image downloads
-            # newly added two lines below
-            pixeledURL = getRandomPixededImageURLFromOriginalImageURL(item)
-            pixeledItems.append(pixeledURL)
-
+            try:
+                response = getResponse(originalUrl)
+                imageFormat = getImageFormat(response)
+#                print(imageFormat)
+                if(checkIfImageFormatIsSupportedByPIL(imageFormat)):
+                    print(originalUrl)
+#                    originalUrls.append(originalUrl)      #Append all the links in the list named 'Links'
+#                    ##time.sleep(0.1)        #Timer could be used to slow down the request for image downloads
+#                    # newly added two lines below
+#                    requestedImage = response.read()
+#                    pixeledUrl = getRandomPixeledImageURLFromOriginalImageURL(requestedImage)
+#                    pixeledUrls.append(pixeledUrl)
+            except:
+                print("ERROR!")
+                print("handled!")
+                print("going to next")
             page = page[end_content:]
+
     # newly added pixeled Items
-    return items, pixeledItems
+    return originalUrls, pixeledUrls
 
 #Getting random pixeled image url
-def getRandomPixededImageURLFromOriginalImageURL(url):
+def getRandomPixeledImageURLFromOriginalImageURL(requestedImage):
     #get newImage's random pixel
-    requestedImage = urllib.request.urlopen(urllib.request.Request(url)).read()
-    requestedImageInByte = Image.open(io.BytesIO(requestedImage))
+    # This restores the same behavior as before.
+#    context = ssl._create_unverified_context()
+#    headers = {}
+#    headers['User-Agent'] = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"
+#    req = urllib.request.Request(url, headers = headers)
+#    requestedImage = urllib.request.urlopen(req, context=context).read()
+    imageInBytes = io.BytesIO(requestedImage)
+    requestedImageInByte = Image.open(imageInBytes)
     pixels = requestedImageInByte.load()
-    randomPixel = pixels[random.randint(0, requestedImageInByte.size[0]), random.randint(0, requestedImageInByte.size[1])]
+    width, height = requestedImageInByte.size
+    randomPixel = pixels[random.randint(0, width), random.randint(0, height)]
+    
+    if not isinstance(randomPixel, tuple):
+        randomPixel = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+
+    if len(randomPixel) < 3:
+        randomPixel = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
     #get newImage's width and height
     width, height = requestedImageInByte.size
     rate = round(width/height, 2)
     newWidth = 100
     newHeight = int(100 * rate)
-
+    
+    print(newWidth, newHeight, randomPixel)
     #create newImage with random pixel, width and height
     newImage = Image.new("RGB", (newWidth, newHeight), randomPixel)
-
+    
+    key = 'out'
+    newImage.save('./out.jpg')
     #upload
-    stream = io.BytesIO()
-    newImage.save(stream, format="png")
-    stream.seek(0)
-    key = "testFileNew.png"
-    s3.put_object(Bucket=bucket, Key=key, Body =stream,ContentType='image/png',ACL='public-read')
-
+#    stream = io.BytesIO()
+#    newImage.save(stream, format="png")
+#    stream.seek(0)
+#    key = "testFileNew.png"
+#    s3.put_object(Bucket=bucket, Key=key, Body =stream,ContentType='image/png',ACL='public-read')
+#
     return key
 
-def getRandomPixeledImageFromImageURL(url):
+#def getRandomPixeledImageFromImageURL(url):
     #get newImage's pixel
-    requestedImage = urllib.request.urlopen(urllib.request.Request(url)).read()
-    requestedImageInByte = Image.open(io.BytesIO(requestedImage))
-    pixels = requestedImageInByte.load()
-    randomPixel = pixels[random.randint(0, requestedImageInByte.size[0]), random.randint(0, requestedImageInByte.size[1])]
+#    headers = {}
+#    headers['User-Agent'] = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"
+#    req = urllib.request.Request(url, headers = headers)
+#    requestedImage = urllib.request.urlopen(req).read()
+#    requestedImageInByte = Image.open(io.BytesIO(requestedImage))
+#    pixels = requestedImageInByte.load()
+#    randomPixel = pixels[random.randint(0, requestedImageInByte.size[0]), random.randint(0, requestedImageInByte.size[1])]
 
     #get newImage's width and height
-    width, height = requestedImageInByte.size
-    rate = round(width/height, 2)
-    newWidth = 100
-    newHeight = int(100 * rate)
+#    width, height = requestedImageInByte.size
+#    rate = round(width/height, 2)
+#    newWidth = 100
+#    newHeight = int(100 * rate)
 
     #create newImage
-    newImage = Image.new("RGB", (newWidth, newHeight), randomPixel)
-
+#    newImage = Image.new("RGB", (newWidth, newHeight), randomPixel)
+    
     #upload
-    stream = io.BytesIO()
-    newImage.save(stream, format="png")
-    stream.seek(0)
-    key = "testFileNew.png"
-    s3.put_object(Bucket=bucket, Key=key, Body =stream,ContentType='image/png',ACL='public-read')
+#    stream = io.BytesIO()
+#    newImage.save(stream, format="png")
+#    stream.seek(0)
+#    key = "testFileNew.png"
+#    s3.put_object(Bucket=bucket, Key=key, Body =stream,ContentType='image/png',ACL='public-read')
 
 def hello(event, context):
     body = {
@@ -142,3 +199,5 @@ def hello(event, context):
         "event": event
     }
     """
+
+google_images_get_html("strawberry")
