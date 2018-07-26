@@ -42,9 +42,16 @@ def pixelBoard(request, queryWord):
     parsedQueryWord = urllib.parse.unquote(queryWord)
     #imageUrls = getImagesFromS3(parsedQueryWord)
     imageUrls = []
-    for n in range(600):
-        url = "https://s3.ap-northeast-2.amazonaws.com/searched-words/testFiles/test_" + str(n) + ".png"
+
+    s3_resource = boto3.resource('s3')
+    my_bucket = s3_resource.Bucket('searched-words')
+    for object_summary in my_bucket.objects.filter(Prefix="icrawler/images/" + parsedQueryWord + "/pixeled/"):
+        url = "https://s3.ap-northeast-2.amazonaws.com/searched-words/" + object_summary.key
         imageUrls.append(url)
+
+    #for n in range(600):
+    #    url = "https://s3.ap-northeast-2.amazonaws.com/searched-words/testFiles/test_" + str(n) + ".png"
+    #    imageUrls.append(url)
 
     #changedImages = []
     #for url in urls:
@@ -55,8 +62,6 @@ def pixelBoard(request, queryWord):
                      + "/"
                      + HTML().AFTER_SEARCHING_WORD)    
     context = {KEY().IMAGES : imageUrls}
-    
-
     return render (request, 
                    template_name,
                    context)
