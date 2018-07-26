@@ -43,7 +43,7 @@ def put_pixels_to_s3(event, context):
         s3.put_object(Bucket=bucket,
                       Key=key,
                       Body=pixeled_image_stream,
-                      ContentType='image/jpg',
+                      ContentType='image/jpeg',
                       ACL='public-read')
     except Exception as exception:
         print("Cannot put object To S3.")
@@ -419,7 +419,7 @@ def create_key_for_pixeled_image(url):
 #requestedImage = getResponse("https://s3.ap-northeast-2.amazonaws.com/searched-words/icrawler/images/happy/original/2018_1_1-2018_6_30/000002.jpg").read()
 #getRandomPixeledImageFromOriginalImageURL(requestedImage)
 
-s3_resource = boto3.resource('s3')
-my_bucket = s3_resource.Bucket('searched-words')
-for object_summary in my_bucket.objects.filter(Prefix="icrawler/images/happy/pixeled/"):
-        print (object_summary.key)
+#s3_resource = boto3.resource('s3')
+#my_bucket = s3_resource.Bucket('searched-words')
+#for object_summary in my_bucket.objects.filter(Prefix="icrawler/images/happy/pixeled/"):
+#        print (object_summary.key)
