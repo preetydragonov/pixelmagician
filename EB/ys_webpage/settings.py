@@ -139,7 +139,7 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.DefaultStorageFinder',
 ]
 
-    #ONLY FOR AWS! hide 4 codelines below when locally developing
+#ONLY FOR AWS! hide 4 codelines below when locally developing
 AWS_STORAGE_BUCKET_NAME = 'elasticbeanstalk-ap-northeast-2-285150183432'
 AWS_S3_REGION_NAME = 'ap-northeast-2'
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
