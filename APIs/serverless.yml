@@ -21,6 +21,10 @@ plugins:
   - serverless-delete-loggroups
   - serverless-python-requirements
 
+custom:
+  pythonRequirements:
+    dockerizePip: true
+
 provider:
   name: aws
   runtime: python3.6
@@ -59,16 +63,43 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
-  post_word_to_s3:
-    handler: main.put_images_to_S3
-    event:
-        -http:
-            path: prod/image/new
-            method: post
-            integration: lambda
+  put_pixels_to_s3:
+    handler: main.put_pixels_to_s3
+    events:
+      - http:
+          path: prod/image/new
+          method: post
+          integration: lambda
+    timeout: 30
+    memorySize: 192
+
+  put_images_to_s3_by_using_icrawler:
+    handler: main.put_images_to_s3_by_using_icrawler
+    events:
+      - http:
+          path: prod/image/icrawl
+          method: post
+          integration: lambda
+    timeout: 30
+    memorySize: 192
+
+  icrawler_trigger:
+    handler: main.icrawler_trigger
+    events:
+      - http:
+          path: prod/image/icrawl/trigger
+          method: post
+          integration: lambda
+    memorySize: 192
 
   hello:
     handler: main.hello
+    events:
+      - http:
+          path: prod/hello
+          method: get
+          integration: lambda
+    memorySize: 192
 
     
 #    The following are a few example events you can configure
