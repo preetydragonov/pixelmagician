@@ -7,6 +7,7 @@ import urllib.parse
 import io
 import random
 import json
+import boto3
 from .constants import (APPNAME,
                         HTML,
                         KEY,
