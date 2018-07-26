@@ -21,7 +21,6 @@ def home(request):
                      + "/"
                      + HTML().HOME)
     context = {}
-
     return render(request, 
                   template_name,
                   context)

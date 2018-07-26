@@ -7,7 +7,7 @@ from .constants import (APPNAME,
 
 def putImagesToS3(data):
     formattedDataForPuttingOnS3 = formatDataForS3Request(data, requestType="POST")
-    requestForPutImages = urllib.request.Request(URL().ICRAWLER_TRIGGER, formattedDataForPuttingOnS3)
+    requestForPutImages = urllib.request.Request(URL().PUT_IMAGES_TO_S3, formattedDataForPuttingOnS3)
     response = urllib.request.urlopen(requestForPutImages)
 
 def getImagesFromS3(searchedWord):
