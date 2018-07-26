@@ -25,11 +25,13 @@ def formatDataForS3Request(data, requestType):
         "Records": [{
             "s3": {
                 "object": {
-                    "body": data,
+                    "body": {
+                        'query_word': data
+                    }
                 },
-            "s3SchemaVersion": "1.0"
+                "s3SchemaVersion": "1.0"
             },
-        "awsRegion": "ap-northeast-2"
+            "awsRegion": "ap-northeast-2"
         }]
     }
 
