@@ -5,7 +5,7 @@
     <head>
 	<title>loading</title>
 	<link rel="stylesheet" href="{% static 'searchWord/css/loading.css' %}">
-	<script src="{% static 'searchWord/js/passWordToS3.js' %}" queryWordOnScript="{{ queryWord }}"></script>
+	<!--script src="{% static 'searchWord/js/passWordToS3.js' %}" queryWordOnScript="{{ queryWord }}"></script-->
     </head>
     <body>
 	<div class="container">
@@ -21,5 +21,6 @@
 			</div>
 		</div>	
 	</div>
+	<script src="{% static 'searchWord/js/passWordToS3.js' %}" queryWordOnScript="{{ queryWord }}"></script>
     </body>
 </html>
