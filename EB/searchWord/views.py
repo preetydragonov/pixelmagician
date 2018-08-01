@@ -48,7 +48,7 @@ def pixelBoard(request, queryWord):
 
     stopper = 0
     while(True):
-        if(len(list(my_bucket.objects.filter(Prefix="icrawler/images/" + urllib.parse.quote_plus(parsedQueryWord) + "/pixeled/"))) > MINIMUM_IMAGES):
+        if(len(list(my_bucket.objects.filter(Prefix="icrawler/images/" + parsedQueryWord + "/pixeled/"))) > MINIMUM_IMAGES):
             break
         elif(stopper > 30):
             #임의의 페이지를 보여준다.
@@ -59,7 +59,8 @@ def pixelBoard(request, queryWord):
 
     imageUrls = []
     for object_summary in my_bucket.objects.filter(Prefix="icrawler/images/" + parsedQueryWord + "/pixeled/"):
-        url = "https://s3.ap-northeast-2.amazonaws.com/searched-words/" + object_summary.key
+        encoded_key = create_encoded_key(object_summary.key)
+        url = "https://s3.ap-northeast-2.amazonaws.com/searched-words/" + encoded_key
         imageUrls.append(url)
 
     #for n in range(600):
@@ -78,3 +79,13 @@ def pixelBoard(request, queryWord):
     return render (request, 
                    template_name,
                    context)
+
+def create_encoded_key(url):
+    rsplit_list = url.rsplit('/', 6)
+    new_key = (rsplit_list[-6] + "/" +
+               rsplit_list[-5] + "/" +
+               urllib.parse.quote_plus(rsplit_list[-4]) + "/" +
+               rsplit_list[-3] + "/" +
+               rsplit_list[-2] + "/" +
+               rsplit_list[-1])
+    return new_key

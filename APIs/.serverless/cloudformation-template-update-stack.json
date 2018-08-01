@@ -36,7 +36,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/APIs/dev/1533155644177-2018-08-01T20:34:04.177Z/APIs.zip"
+          "S3Key": "serverless/APIs/dev/1533157378151-2018-08-01T21:02:58.151Z/APIs.zip"
         },
         "FunctionName": "APIs-dev-put_pixels_to_s3",
         "Handler": "main.put_pixels_to_s3",
@@ -49,14 +49,14 @@
         "PutUnderscorepixelsUnderscoretoUnderscores3LogGroup"
       ]
     },
-    "PutUnderscorepixelsUnderscoretoUnderscores3LambdaVersionnzrJVg3hTumQKIjKgbCW6dLSVC7zZLIG0DlHm7H1E": {
+    "PutUnderscorepixelsUnderscoretoUnderscores3LambdaVersionlbOTO4YCIdQXhpKZ47UsajU9Dq6BXBww3QqJTIHDRug": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "PutUnderscorepixelsUnderscoretoUnderscores3LambdaFunction"
         },
-        "CodeSha256": "r5JcZwiU0c+bEJTm4SlCibcIVECibJFh2Ij1UAsE2aA="
+        "CodeSha256": "5iOu+650QvXYwzUZVIMsFBUznKSDvoThGfLRGy72J1E="
       }
     },
     "PutUnderscoreimagesUnderscoretoUnderscores3UnderscorebyUnderscoreusingUnderscoreicrawlerLambdaFunction": {
@@ -66,7 +66,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/APIs/dev/1533155644177-2018-08-01T20:34:04.177Z/APIs.zip"
+          "S3Key": "serverless/APIs/dev/1533157378151-2018-08-01T21:02:58.151Z/APIs.zip"
         },
         "FunctionName": "APIs-dev-put_images_to_s3_by_using_icrawler",
         "Handler": "main.put_images_to_s3_by_using_icrawler",
@@ -79,14 +79,14 @@
         "PutUnderscoreimagesUnderscoretoUnderscores3UnderscorebyUnderscoreusingUnderscoreicrawlerLogGroup"
       ]
     },
-    "PutUnderscoreimagesUnderscoretoUnderscores3UnderscorebyUnderscoreusingUnderscoreicrawlerLambdaVersioniFfOvlOQvoAxJLFzJZGiHDiL2f55gZaU3rXR89r3yg": {
+    "PutUnderscoreimagesUnderscoretoUnderscores3UnderscorebyUnderscoreusingUnderscoreicrawlerLambdaVersion0lJiEgW4mB7WABRsQyb5gDmb6MlsF1UzLpsYbFnapY": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "PutUnderscoreimagesUnderscoretoUnderscores3UnderscorebyUnderscoreusingUnderscoreicrawlerLambdaFunction"
         },
-        "CodeSha256": "r5JcZwiU0c+bEJTm4SlCibcIVECibJFh2Ij1UAsE2aA="
+        "CodeSha256": "5iOu+650QvXYwzUZVIMsFBUznKSDvoThGfLRGy72J1E="
       }
     },
     "IcrawlerUnderscoretriggerLambdaFunction": {
@@ -96,7 +96,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/APIs/dev/1533155644177-2018-08-01T20:34:04.177Z/APIs.zip"
+          "S3Key": "serverless/APIs/dev/1533157378151-2018-08-01T21:02:58.151Z/APIs.zip"
         },
         "FunctionName": "APIs-dev-icrawler_trigger",
         "Handler": "main.icrawler_trigger",
@@ -109,14 +109,14 @@
         "IcrawlerUnderscoretriggerLogGroup"
       ]
     },
-    "IcrawlerUnderscoretriggerLambdaVersion8F7u3s9xs8ZaqmTpqVP07xdLmOxrPqZFILKo1ivUOIU": {
+    "IcrawlerUnderscoretriggerLambdaVersionBKsY7awNqYKkZtttuUBaREhSxuS5cZPIBEKoAOjvhlQ": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "IcrawlerUnderscoretriggerLambdaFunction"
         },
-        "CodeSha256": "r5JcZwiU0c+bEJTm4SlCibcIVECibJFh2Ij1UAsE2aA="
+        "CodeSha256": "5iOu+650QvXYwzUZVIMsFBUznKSDvoThGfLRGy72J1E="
       }
     },
     "HelloLambdaFunction": {
@@ -126,7 +126,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/APIs/dev/1533155644177-2018-08-01T20:34:04.177Z/APIs.zip"
+          "S3Key": "serverless/APIs/dev/1533157378151-2018-08-01T21:02:58.151Z/APIs.zip"
         },
         "FunctionName": "APIs-dev-hello",
         "Handler": "main.hello",
@@ -139,14 +139,14 @@
         "HelloLogGroup"
       ]
     },
-    "HelloLambdaVersionHffhD36fdkittQsn8z6RFfL5OUlytxRilPZjfdAsw": {
+    "HelloLambdaVersionFgUcLEmScZhOoHbHTm0SqiNzxh9vHUUrmpjYg1WIDm8": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "HelloLambdaFunction"
         },
-        "CodeSha256": "r5JcZwiU0c+bEJTm4SlCibcIVECibJFh2Ij1UAsE2aA="
+        "CodeSha256": "5iOu+650QvXYwzUZVIMsFBUznKSDvoThGfLRGy72J1E="
       }
     },
     "ApiGatewayRestApi": {
@@ -819,7 +819,7 @@
         ]
       }
     },
-    "ApiGatewayDeployment1533155645898": {
+    "ApiGatewayDeployment1533157379814": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -976,25 +976,25 @@
     "PutUnderscorepixelsUnderscoretoUnderscores3LambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "PutUnderscorepixelsUnderscoretoUnderscores3LambdaVersionnzrJVg3hTumQKIjKgbCW6dLSVC7zZLIG0DlHm7H1E"
+        "Ref": "PutUnderscorepixelsUnderscoretoUnderscores3LambdaVersionlbOTO4YCIdQXhpKZ47UsajU9Dq6BXBww3QqJTIHDRug"
       }
     },
     "PutUnderscoreimagesUnderscoretoUnderscores3UnderscorebyUnderscoreusingUnderscoreicrawlerLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "PutUnderscoreimagesUnderscoretoUnderscores3UnderscorebyUnderscoreusingUnderscoreicrawlerLambdaVersioniFfOvlOQvoAxJLFzJZGiHDiL2f55gZaU3rXR89r3yg"
+        "Ref": "PutUnderscoreimagesUnderscoretoUnderscores3UnderscorebyUnderscoreusingUnderscoreicrawlerLambdaVersion0lJiEgW4mB7WABRsQyb5gDmb6MlsF1UzLpsYbFnapY"
       }
     },
     "IcrawlerUnderscoretriggerLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "IcrawlerUnderscoretriggerLambdaVersion8F7u3s9xs8ZaqmTpqVP07xdLmOxrPqZFILKo1ivUOIU"
+        "Ref": "IcrawlerUnderscoretriggerLambdaVersionBKsY7awNqYKkZtttuUBaREhSxuS5cZPIBEKoAOjvhlQ"
       }
     },
     "HelloLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "HelloLambdaVersionHffhD36fdkittQsn8z6RFfL5OUlytxRilPZjfdAsw"
+        "Ref": "HelloLambdaVersionFgUcLEmScZhOoHbHTm0SqiNzxh9vHUUrmpjYg1WIDm8"
       }
     },
     "ServiceEndpoint": {

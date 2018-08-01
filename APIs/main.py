@@ -25,6 +25,11 @@ def put_pixels_to_s3(event, context):
         print("Cannot get value of key 'image_url' from event.")
         raise exception
     try:
+        original_key = getTargetValueFromEvent(target="original_key", event=event)
+    except Exception as exception:
+        print("Cannot get value of key 'key' from event.")
+        raise exception
+    try:
         print(image_url)
         response = getResponse(image_url)
     except Exception as exception:
@@ -41,9 +46,9 @@ def put_pixels_to_s3(event, context):
         print("Cannot get random pixeled image.")
         raise exception
     try:
-        key = create_key_for_pixeled_image(image_url)
+        pixeled_key = create_key_for_pixeled_image(original_key)
         s3.put_object(Bucket=bucket,
-                      Key=key,
+                      Key=pixeled_key,
                       Body=pixeled_image_stream,
                       ContentType='image/jpeg',
                       ACL='public-read')
@@ -88,17 +93,18 @@ def put_images_to_s3_by_using_icrawler(event, context):
     for i in list(range(1, max_iteration+1)):
         file_path = '/tmp/' + directory + '/00000{}.jpg'.format(i)
         if(path.exists(file_path)):
-            key = 'icrawler/' + directory + '/' + '00000{}.jpg'.format(i)
+            original_key = 'icrawler/' + directory + '/' + '00000{}.jpg'.format(i)
             try:
-                s3.upload_file(file_path, Bucket=bucket, Key=key, ExtraArgs={'ACL':'public-read'})
+                s3.upload_file(file_path, Bucket=bucket, Key=original_key, ExtraArgs={'ACL':'public-read'})
                 print("uploaded file to S3")
             except Exception as exception:
-                print('Error getting object {} from bucket {}.'.format(key, bucket))
+                print('Error getting object {} from bucket {}.'.format(original_key, bucket))
                 raise exception
 
             image_url = "https://s3.ap-northeast-2.amazonaws.com/searched-words/icrawler/" + get_korean_converted_to_unicode(query_word, date_range_in_tuple) + '/' + '00000{}.jpg'.format(i)
-            payload = addDataToPayloadFormat(data={"image_url": image_url})
-        
+            
+            payload = addDataToPayloadFormat(data={"image_url": image_url, "original_key": original_key})
+            
             try:
                 Lambda.invoke(FunctionName="APIs-dev-put_pixels_to_s3",
                               InvocationType='Event',
