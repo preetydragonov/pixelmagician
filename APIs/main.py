@@ -137,7 +137,7 @@ def icrawler_trigger(event, context):
 
     payload = addDataToPayloadFormat(data={"query_word": query_word,
                                            "date_range": date_range,
-                                           "max_iteration": 4})
+                                           "max_iteration": 1})
 
     Lambda.invoke(FunctionName="APIs-dev-put_images_to_s3_by_using_icrawler",
                   InvocationType='Event',
