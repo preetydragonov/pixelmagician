@@ -7,6 +7,7 @@ import urllib.parse
 import io
 import random
 import json
+import time
 import boto3
 from .constants import (APPNAME,
                         HTML,
@@ -42,9 +43,18 @@ def pixelBoard(request, queryWord):
     parsedQueryWord = urllib.parse.unquote(queryWord)
     #imageUrls = getImagesFromS3(parsedQueryWord)
     imageUrls = []
-
+    MINIMUM_IMAGES = 20
     s3_resource = boto3.resource('s3')
     my_bucket = s3_resource.Bucket('searched-words')
+
+    while(True):
+        if(len(my_bucket.objects.filter(Prefix="icrawler/images/" + parsedQueryWord + "/pixeled/")) > MINIMUM_IMAGES):
+            break
+        else:
+            time.sleep(1)
+
+
+
     for object_summary in my_bucket.objects.filter(Prefix="icrawler/images/" + parsedQueryWord + "/pixeled/"):
         url = "https://s3.ap-northeast-2.amazonaws.com/searched-words/" + object_summary.key
         imageUrls.append(url)
