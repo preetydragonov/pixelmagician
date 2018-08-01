@@ -47,10 +47,14 @@ def pixelBoard(request, queryWord):
     s3_resource = boto3.resource('s3')
     my_bucket = s3_resource.Bucket('searched-words')
 
+    stopper = 0
     while(True):
         if(len(list(my_bucket.objects.filter(Prefix="icrawler/images/" + parsedQueryWord + "/pixeled/"))) > MINIMUM_IMAGES):
             break
+        elif(stopper > 30):
+            break
         else:
+            stopper += 1
             time.sleep(1)
 
     imageUrls = []
