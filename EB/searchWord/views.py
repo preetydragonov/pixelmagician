@@ -42,8 +42,8 @@ def loading(request, queryWord):
 def pixelBoard(request, queryWord):
     parsedQueryWord = urllib.parse.unquote(queryWord)
     #imageUrls = getImagesFromS3(parsedQueryWord)
-    imageUrls = []
-    MINIMUM_IMAGES = 20
+
+    MINIMUM_IMAGES = 7
     s3_resource = boto3.resource('s3')
     my_bucket = s3_resource.Bucket('searched-words')
 
@@ -53,8 +53,7 @@ def pixelBoard(request, queryWord):
         else:
             time.sleep(1)
 
-
-
+    imageUrls = []
     for object_summary in my_bucket.objects.filter(Prefix="icrawler/images/" + parsedQueryWord + "/pixeled/"):
         url = "https://s3.ap-northeast-2.amazonaws.com/searched-words/" + object_summary.key
         imageUrls.append(url)
