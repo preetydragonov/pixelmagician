@@ -85,16 +85,10 @@ def put_images_to_s3_by_using_icrawler(event, context):
     except ClientError:
         pass
 
-    google_crawler = GoogleImageCrawler(
-        downloader_threads=1,
-        storage={'root_dir': '/tmp/' + directory})
+    google_crawler = GoogleImageCrawler(downloader_threads=1, storage={'root_dir': '/tmp/' + directory})
     google_crawler.crawl(query_word, filters=dict(date=date_range_in_tuple), max_num=max_iteration)
 
     print("crawl ended")
-    print(os.path.isfile('/tmp/' + directory + '/000001.jpg'))
-
-    # todo 파일 경로를 저장하는 리스트
-    # todo 해당 파일 경로가 존재하는 경우에, 저장될 주소를 따로 저장하도록 한다.
 
     for i in list(range(1, max_iteration+1)):
         file_path = '/tmp/' + directory + '/00000{}.jpg'.format(i)
@@ -117,9 +111,6 @@ def put_images_to_s3_by_using_icrawler(event, context):
                 print("triggered pixel uploading function")
             except Exception as exception:
                 raise exception
-
-    # todo 파일 경로 리스트를 올려주는 함수
-
 
 def icrawler_trigger(event, context):
     try:
@@ -296,6 +287,7 @@ def getRandomPixeledImageURLFromOriginalImageURL(requestedImage):
 def getRandomPixeledImageFromOriginalImageURL(requested_image):
     opened_image = openImage(requested_image)
     random_pixel = getRandomPixel(opened_image)
+    # main_pixel = get_main_pixel(opened_image)
     if not isinstance(random_pixel, tuple):
         random_pixel = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
     if len(random_pixel) < 3:
@@ -307,29 +299,27 @@ def getRandomPixeledImageFromOriginalImageURL(requested_image):
     stream.seek(0)
     return stream
 
-# def get_main_color(file):
-#     img = Image.open(file)
-#     colors = img.getcolors(256) #put a higher value if there are many colors in your image
-#     max_occurence, most_present = 0, 0
-#     try:
-#         for c in colors:
-#             if c[0] > max_occurence:
-#                 (max_occurence, most_present) = c
-#         return most_present
-#     except TypeError:
-#         raise Exception("Too many colors in the image")
-
-def openImage(image):
-    imageInBytes = io.BytesIO(image)
-    return Image.open(imageInBytes)
-
-
 def getRandomPixel(imageInByte):
     pixels = imageInByte.load()
     width, height = imageInByte.size
     randomPixel = pixels[random.randint(0, width), random.randint(0, height)]
     return randomPixel
 
+
+def get_main_color(opened_image):
+    colors = opened_image.getcolors(256) #put a higher value if there are many colors in your image
+    max_occurence, most_present = 0, 0
+    try:
+        for c in colors:
+            if c[0] > max_occurence:
+                (max_occurence, most_present) = c
+        return most_present
+    except TypeError:
+        raise Exception("Too many colors in the image")
+
+def openImage(image):
+    imageInBytes = io.BytesIO(image)
+    return Image.open(imageInBytes)
 
 def createPixeledImageInSmallerSize(imageInByte, randomPixel):
     width, height = imageInByte.size
