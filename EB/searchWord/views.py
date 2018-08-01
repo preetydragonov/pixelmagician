@@ -48,7 +48,7 @@ def pixelBoard(request, queryWord):
     my_bucket = s3_resource.Bucket('searched-words')
 
     while(True):
-        if(len(my_bucket.objects.filter(Prefix="icrawler/images/" + parsedQueryWord + "/pixeled/")) > MINIMUM_IMAGES):
+        if(len(list(my_bucket.objects.filter(Prefix="icrawler/images/" + parsedQueryWord + "/pixeled/"))) > MINIMUM_IMAGES):
             break
         else:
             time.sleep(1)
