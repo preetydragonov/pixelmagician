@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/APIs/main.py" line="198" mnemonic="3" />
+    <bookmark url="file://$PROJECT_DIR$/APIs/main.py" line="196" mnemonic="3" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="079fa32f-1757-45cb-b66c-91564f7bbec3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/APIs/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/APIs/main.py" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -22,12 +21,15 @@
     <favorites_list name="ys_webpage" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/APIs/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="126" column="8" selection-start-line="126" selection-start-column="8" selection-end-line="126" selection-end-column="8" />
+            <state relative-caret-position="549">
+              <caret line="120" column="29" lean-forward="true" selection-start-line="120" selection-start-column="29" selection-end-line="120" selection-end-column="29" />
+              <folding>
+                <element signature="e#25#36#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -35,7 +37,7 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/EB/searchWord/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
+            <state relative-caret-position="435">
               <caret line="46" selection-start-line="46" selection-end-line="46" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
@@ -276,12 +278,12 @@
       <window_info anchor="bottom" id="Python Console" order="8" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4890625" visible="true" weight="0.16640624" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4875" visible="true" weight="0.16640624" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" sideWeight="0.5109375" side_tool="true" visible="true" weight="0.16640624" />
+      <window_info id="Favorites" order="2" sideWeight="0.5125" side_tool="true" visible="true" weight="0.16640624" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -299,14 +301,64 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/EB/searchWord/apiRequests.py">
+    <entry file="file://$PROJECT_DIR$/APIs/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="1890">
+          <caret line="126" column="8" selection-start-line="126" selection-start-column="8" selection-end-line="126" selection-end-column="8" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#25#36#0" expanded="true" />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EB/searchWord/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EB/searchWord/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="32" selection-start-column="32" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EB/searchWord/templates/searchWord/loading.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="22" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EB/searchWord/templates/searchWord/home.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EB/searchWord/static/searchWord/js/passWordToS3.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EB/searchWord/static/searchWord/js/postImagesToS3.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EB/searchWord/static/searchWord/js/pixelate.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EB/searchWord/static/searchWord/js/wait.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EB/searchWord/static/searchWord/js/google-image-layout.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EB/searchWord/apiRequests.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/EB/searchWord/static/searchWord/js/main.js">
       <provider selected="true" editor-type-id="text-editor" />
@@ -359,7 +411,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/EB/searchWord/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
+        <state relative-caret-position="435">
           <caret line="46" selection-start-line="46" selection-end-line="46" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
@@ -369,8 +421,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/APIs/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="126" column="8" selection-start-line="126" selection-start-column="8" selection-end-line="126" selection-end-column="8" />
+        <state relative-caret-position="549">
+          <caret line="120" column="29" lean-forward="true" selection-start-line="120" selection-start-column="29" selection-end-line="120" selection-end-column="29" />
+          <folding>
+            <element signature="e#25#36#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
