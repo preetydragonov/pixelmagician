@@ -52,6 +52,7 @@ def put_pixels_to_s3(event, context):
 
 def put_images_to_s3_by_using_icrawler(event, context):
     try:
+        print(event)
         query_word = getTargetValueFromEvent(target="query_word", event=event)
     except Exception as exception:
         print("Cannot get value of key 'query_word' from event.")
@@ -128,18 +129,24 @@ def icrawler_trigger(event, context):
     except Exception as exception:
         print("Cannot get value of key 'query_word' from event.")
         raise exception
+    try:
+        date_range = getTargetValueFromEvent(target="date_range", event=event)
+    except Exception as exception:
+        print("Cannot get value of key 'date_range' from event.")
+        raise exception
 
-    for date_range in createDateRangeList(yearRange=7):
-        payload = addDataToPayloadFormat(data={"query_word": query_word,
-                                               "date_range": date_range,
-                                               "max_iteration": 4})
-        Lambda.invoke(FunctionName="APIs-dev-put_images_to_s3_by_using_icrawler",
-                      InvocationType='Event',
-                      Payload=json.dumps(payload))
+    payload = addDataToPayloadFormat(data={"query_word": query_word,
+                                           "date_range": date_range,
+                                           "max_iteration": 4})
+
+    Lambda.invoke(FunctionName="APIs-dev-put_images_to_s3_by_using_icrawler",
+                  InvocationType='Event',
+                  Payload=json.dumps(payload))
 
 
 def put_images_to_S3(event, context):
-    queryWord = event['Records'][0]['s3']['object']['key']
+    print(event)
+    queryWord = event['Records'][0]['s3']['object']['body']
     googleImageUrls = google_images_get_html(queryWord)
 
     key = queryWord + ".json"
@@ -302,6 +309,17 @@ def getRandomPixeledImageFromOriginalImageURL(requested_image):
     stream.seek(0)
     return stream
 
+# def get_main_color(file):
+#     img = Image.open(file)
+#     colors = img.getcolors(256) #put a higher value if there are many colors in your image
+#     max_occurence, most_present = 0, 0
+#     try:
+#         for c in colors:
+#             if c[0] > max_occurence:
+#                 (max_occurence, most_present) = c
+#         return most_present
+#     except TypeError:
+#         raise Exception("Too many colors in the image")
 
 def openImage(image):
     imageInBytes = io.BytesIO(image)
@@ -318,8 +336,8 @@ def getRandomPixel(imageInByte):
 def createPixeledImageInSmallerSize(imageInByte, randomPixel):
     width, height = imageInByte.size
     rate = round(width / height, 2)
-    newWidth = 100
-    newHeight = int(100 * rate)
+    newHeight = 300
+    newWidth = int(300 * rate)
     return Image.new("RGB", (newWidth, newHeight), randomPixel)
 
 
@@ -391,17 +409,6 @@ def addNewKeyValueToPayloadBody(key, value, payload):
 
 def getTargetValueFromEvent(target, event):
     return event['Records'][0]['s3']['object']['body'][target]
-
-
-def createDateRangeList(yearRange):
-    dateList = []
-    for i in range(yearRange):
-        year = 2018 - i
-        early = ((year, 1, 1), (year, 6, 30))
-        dateList.append(early)
-        late = ((year, 7, 1), (year, 12, 31))
-        dateList.append(late)
-    return dateList
 
 
 def create_key_for_pixeled_image(url):
