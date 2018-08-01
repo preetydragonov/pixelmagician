@@ -17,7 +17,9 @@ def putImagesToS3(data):
         postDatum = formatDataForS3Request(data, date_range, requestType="POST")
         postData.append(postDatum)
 
-    loop = asyncio.get_event_loop()
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+
     for postDatum in postData:
         loop.run_in_executor(None, internet_resource_getter, postDatum)
 
