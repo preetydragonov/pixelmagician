@@ -11,6 +11,7 @@ from PIL import Image
 import ssl
 from icrawler.builtin import GoogleImageCrawler
 import os
+from os import path
 
 s3 = boto3.client('s3')
 bucket = 'searched-words'
@@ -92,33 +93,30 @@ def put_images_to_s3_by_using_icrawler(event, context):
     print("crawl ended")
     print(os.path.isfile('/tmp/' + directory + '/000001.jpg'))
 
-    with open('/tmp/' + directory + '/000001.jpg', 'w') as f:
-        print(f)
-        print("read 000001.jpg from memory: success!")
-
     # todo 파일 경로를 저장하는 리스트
     # todo 해당 파일 경로가 존재하는 경우에, 저장될 주소를 따로 저장하도록 한다.
 
-    for i in list(range(1, 5)):
+    for i in list(range(1, max_iteration+1)):
         file_path = '/tmp/' + directory + '/00000{}.jpg'.format(i)
-        key = 'icrawler/' + directory + '/' + '00000{}.jpg'.format(i)
-        try:
-            s3.upload_file(file_path, Bucket=bucket, Key=key, ExtraArgs={'ACL':'public-read'})
-            print("uploaded file to S3")
-        except Exception as exception:
-            print('Error getting object {} from bucket {}.'.format(key, bucket))
-            raise exception
+        if(path.exists(file_path)):
+            key = 'icrawler/' + directory + '/' + '00000{}.jpg'.format(i)
+            try:
+                s3.upload_file(file_path, Bucket=bucket, Key=key, ExtraArgs={'ACL':'public-read'})
+                print("uploaded file to S3")
+            except Exception as exception:
+                print('Error getting object {} from bucket {}.'.format(key, bucket))
+                raise exception
 
-        image_url = "https://s3.ap-northeast-2.amazonaws.com/searched-words/" + key
-        payload = addDataToPayloadFormat(data={"image_url": image_url})
+            image_url = "https://s3.ap-northeast-2.amazonaws.com/searched-words/" + key
+            payload = addDataToPayloadFormat(data={"image_url": image_url})
         
-        try:
-            Lambda.invoke(FunctionName="APIs-dev-put_pixels_to_s3",
-                          InvocationType='Event',
-                          Payload=json.dumps(payload))
-            print("triggered pixel uploading function")
-        except Exception as exception:
-            raise exception
+            try:
+                Lambda.invoke(FunctionName="APIs-dev-put_pixels_to_s3",
+                              InvocationType='Event',
+                              Payload=json.dumps(payload))
+                print("triggered pixel uploading function")
+            except Exception as exception:
+                raise exception
 
     # todo 파일 경로 리스트를 올려주는 함수
 
