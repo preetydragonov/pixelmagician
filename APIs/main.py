@@ -25,6 +25,7 @@ def put_pixels_to_s3(event, context):
         print("Cannot get value of key 'image_url' from event.")
         raise exception
     try:
+        print(image_url)
         response = getResponse(image_url)
     except Exception as exception:
         print("Cannot get response from Given URL.")
@@ -70,13 +71,7 @@ def put_images_to_s3_by_using_icrawler(event, context):
         print("Cannot get value of key 'max_iteration' from event.")
         raise exception
 
-    directory = (
-        'images/' + query_word + "/" +
-        'original' + '/' +
-        str(date_range_in_tuple[0][0]) + '_' + str(date_range_in_tuple[0][1]) + '_' + str(date_range_in_tuple[0][2]) +
-        "-" +
-        str(date_range_in_tuple[1][0]) + '_' + str(date_range_in_tuple[1][1]) + '_' + str(date_range_in_tuple[1][2])
-    )
+    directory = create_directory(query_word, date_range_in_tuple)
 
     try:
         s3.head_object(Bucket=bucket, Key='icrawler/' + directory + '/000001.jpg')
@@ -85,7 +80,7 @@ def put_images_to_s3_by_using_icrawler(event, context):
     except ClientError:
         pass
 
-    google_crawler = GoogleImageCrawler(downloader_threads=1, storage={'root_dir': '/tmp/' + directory})
+    google_crawler = GoogleImageCrawler(downloader_threads=3, storage={'root_dir': '/tmp/' + directory})
     google_crawler.crawl(query_word, filters=dict(date=date_range_in_tuple), max_num=max_iteration)
 
     print("crawl ended")
@@ -101,7 +96,7 @@ def put_images_to_s3_by_using_icrawler(event, context):
                 print('Error getting object {} from bucket {}.'.format(key, bucket))
                 raise exception
 
-            image_url = "https://s3.ap-northeast-2.amazonaws.com/searched-words/" + key
+            image_url = "https://s3.ap-northeast-2.amazonaws.com/searched-words/icrawler/" + get_korean_converted_to_unicode(query_word, date_range_in_tuple) + '/' + '00000{}.jpg'.format(i)
             payload = addDataToPayloadFormat(data={"image_url": image_url})
         
             try:
@@ -111,6 +106,25 @@ def put_images_to_s3_by_using_icrawler(event, context):
                 print("triggered pixel uploading function")
             except Exception as exception:
                 raise exception
+
+def create_directory(query_word, date_range_in_tuple):
+    return (
+        'images/' + query_word + "/" +
+        'original' + '/' +
+        str(date_range_in_tuple[0][0]) + '_' + str(date_range_in_tuple[0][1]) + '_' + str(date_range_in_tuple[0][2]) +
+        "-" +
+        str(date_range_in_tuple[1][0]) + '_' + str(date_range_in_tuple[1][1]) + '_' + str(date_range_in_tuple[1][2])
+    )
+
+def get_korean_converted_to_unicode(query_word, date_range_in_tuple):
+    return (
+        'images/' + urllib.parse.quote_plus(query_word) + "/" +
+        'original' + '/' +
+        str(date_range_in_tuple[0][0]) + '_' + str(date_range_in_tuple[0][1]) + '_' + str(date_range_in_tuple[0][2]) +
+        "-" +
+        str(date_range_in_tuple[1][0]) + '_' + str(date_range_in_tuple[1][1]) + '_' + str(date_range_in_tuple[1][2])
+    )
+
 
 def icrawler_trigger(event, context):
     try:
@@ -126,7 +140,7 @@ def icrawler_trigger(event, context):
 
     payload = addDataToPayloadFormat(data={"query_word": query_word,
                                            "date_range": date_range,
-                                           "max_iteration": 1})
+                                           "max_iteration": 3})
 
     Lambda.invoke(FunctionName="APIs-dev-put_images_to_s3_by_using_icrawler",
                   InvocationType='Event',
@@ -287,7 +301,7 @@ def getRandomPixeledImageURLFromOriginalImageURL(requestedImage):
 def getRandomPixeledImageFromOriginalImageURL(requested_image):
     opened_image = openImage(requested_image)
     random_pixel = getRandomPixel(opened_image)
-    # main_pixel = get_main_pixel(opened_image)
+    # random_pixel = get_main_pixel(opened_image)
     if not isinstance(random_pixel, tuple):
         random_pixel = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
     if len(random_pixel) < 3:
@@ -306,8 +320,8 @@ def getRandomPixel(imageInByte):
     return randomPixel
 
 
-def get_main_color(opened_image):
-    colors = opened_image.getcolors(256) #put a higher value if there are many colors in your image
+def get_main_pixel(imageInByte):
+    colors = imageInByte.getcolors(256) #put a higher value if there are many colors in your image
     max_occurence, most_present = 0, 0
     try:
         for c in colors:

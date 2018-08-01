@@ -41,7 +41,6 @@ def loading(request, queryWord):
 
 def pixelBoard(request, queryWord):
     parsedQueryWord = urllib.parse.unquote(queryWord)
-    #imageUrls = getImagesFromS3(parsedQueryWord)
 
     MINIMUM_IMAGES = 7
     s3_resource = boto3.resource('s3')
@@ -49,9 +48,10 @@ def pixelBoard(request, queryWord):
 
     stopper = 0
     while(True):
-        if(len(list(my_bucket.objects.filter(Prefix="icrawler/images/" + parsedQueryWord + "/pixeled/"))) > MINIMUM_IMAGES):
+        if(len(list(my_bucket.objects.filter(Prefix="icrawler/images/" + urllib.parse.quote_plus(parsedQueryWord) + "/pixeled/"))) > MINIMUM_IMAGES):
             break
         elif(stopper > 30):
+            #임의의 페이지를 보여준다.
             break
         else:
             stopper += 1
