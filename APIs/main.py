@@ -1,7 +1,8 @@
 # -*-encoding: utf-8 -*-
 import json
 import urllib.parse
-from urllib.error import HTTPError
+from urllib.error import HTTPError, URLError
+from urllib.request import Request, urlopen
 import urllib.request
 import boto3
 from botocore.errorfactory import ClientError
@@ -12,11 +13,34 @@ import ssl
 from icrawler.builtin import GoogleImageCrawler
 import os
 from os import path
+from base64 import b64encode
 
 s3 = boto3.client('s3')
 bucket = 'searched-words'
 Lambda = boto3.client('lambda')
 
+def post_searched_word_to_slack(event, context):
+    # The base-64 encoded, encrypted key (CiphertextBlob) stored in the kmsEncryptedHookUrl environment variable
+    #ENCRYPTED_HOOK_URL = os.environ['kmsEncryptedHookUrl']
+    SLACK_CHANNEL = 'get-searched-word'
+    HOOK_URL = "https://hooks.slack.com/services/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"
+    
+    word = json.loads(event['Records'][0]['lambda-invoke']['word'])
+
+    slack_message = {
+        'channel': SLACK_CHANNEL,
+        'text': word
+    }
+    req = Request(HOOK_URL, json.dumps(slack_message).encode('utf-8'))
+    try:
+        response = urlopen(req)
+        response.read()
+    except HTTPError as e:
+        print(e)
+        raise e
+    except URLError as e:
+        print(e)
+        raise e
 
 def put_pixels_to_s3(event, context):
     try:

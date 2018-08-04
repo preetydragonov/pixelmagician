@@ -63,6 +63,16 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
+  post_searched_word_to_slack:
+    handler: main.post_searched_word_to_slack
+    event:
+      - http:
+          path: prod/slack/word
+          method: post
+          integration: lambda
+    timeout: 30
+    memorySize: 192
+
   put_pixels_to_s3:
     handler: main.put_pixels_to_s3
     events:
