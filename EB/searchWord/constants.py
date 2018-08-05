@@ -11,7 +11,7 @@ class KEY(object):
     IMAGES = "images"
 
 class URL(object):
-     PUT_IMAGES_TO_S3 = "https://gemq3v63g6.execute-api.ap-northeast-2.amazonaws.com/prod/image"
-     GET_IMAGES_FROM_S3 = "https://gemq3v63g6.execute-api.ap-northeast-2.amazonaws.com/prod/image"
-     ICRAWLER_TRIGGER = "https://eh60oviexk.execute-api.ap-northeast-2.amazonaws.com/dev/prod/image/icrawl/trigger"
-
+    PUT_IMAGES_TO_S3 = "https://gemq3v63g6.execute-api.ap-northeast-2.amazonaws.com/prod/image"
+    GET_IMAGES_FROM_S3 = "https://gemq3v63g6.execute-api.ap-northeast-2.amazonaws.com/prod/image"
+    ICRAWLER_TRIGGER = "https://eh60oviexk.execute-api.ap-northeast-2.amazonaws.com/dev/prod/image/icrawl/trigger"
+    POST_SEARCHED_WORD_TO_SLACK = "https://eh60oviexk.execute-api.ap-northeast-2.amazonaws.com/dev/prod/slack/word"

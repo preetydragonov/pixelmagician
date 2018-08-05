@@ -14,7 +14,8 @@ from .constants import (APPNAME,
                         KEY,
                         URL)
 from .apiRequests import (putImagesToS3,
-                          getImagesFromS3)
+                          getImagesFromS3,
+                          sendQueryWordToSlack)
 from .logics import (getRandomPixeledImageFromImageURL)
 
 def home(request):
@@ -29,6 +30,7 @@ def home(request):
 def loading(request, queryWord):    
     parsedQueryWord = urllib.parse.unquote(queryWord)
     putImagesToS3(parsedQueryWord)
+    sendQueryWordToSlack(parsedQueryWord)
 
     template_name = (APPNAME().SEARCHWORD
                      + "/"

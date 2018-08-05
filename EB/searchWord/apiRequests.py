@@ -7,6 +7,12 @@ from urllib.request import Request, urlopen
 from urllib.parse import urlencode
 import asyncio
 
+
+def sendQueryWordToSlack(queryWord):
+    postDatum = formatDataForSlackRequest(queryWord)
+    request = Request(URL().POST_SEARCHED_WORD_TO_SLACK, postDatum)
+    urlopen(request)
+
 def internet_resource_getter(post_data):
     request = Request(URL().ICRAWLER_TRIGGER, post_data)
     urlopen(request)
@@ -85,6 +91,24 @@ def formatDataForS3Request(data, date_range, requestType):
         params = urlencode(formattedData)
         return params
     
+    else:
+        return
+
+def formatDataForSlackRequest(queryWord, requestType):
+    formattedData = {
+        "Records": [{
+            "lambda-invoke": {
+                'word': queryWord,
+            },
+        }]
+    }
+    if(requestType == 'POST'):
+        return json.dumps(formattedData).encode('utf-8')
+
+    elif(requestType == 'GET'):
+        params = urlencode(formattedData)
+        return params
+
     else:
         return
 
