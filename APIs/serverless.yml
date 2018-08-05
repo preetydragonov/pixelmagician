@@ -65,7 +65,7 @@ provider:
 functions:
   post_searched_word_to_slack:
     handler: main.post_searched_word_to_slack
-    event:
+    events:
       - http:
           path: prod/slack/word
           method: post

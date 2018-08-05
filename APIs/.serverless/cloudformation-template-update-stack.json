@@ -5,6 +5,12 @@
     "ServerlessDeploymentBucket": {
       "Type": "AWS::S3::Bucket"
     },
+    "PostUnderscoresearchedUnderscorewordUnderscoretoUnderscoreslackLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/APIs-dev-post_searched_word_to_slack"
+      }
+    },
     "PutUnderscorepixelsUnderscoretoUnderscores3LogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
@@ -29,6 +35,36 @@
         "LogGroupName": "/aws/lambda/APIs-dev-hello"
       }
     },
+    "PostUnderscoresearchedUnderscorewordUnderscoretoUnderscoreslackLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/APIs/dev/1533446623923-2018-08-05T05:23:43.923Z/APIs.zip"
+        },
+        "FunctionName": "APIs-dev-post_searched_word_to_slack",
+        "Handler": "main.post_searched_word_to_slack",
+        "MemorySize": 192,
+        "Role": "arn:aws:iam::285150183432:role/lambda_basic_execution",
+        "Runtime": "python3.6",
+        "Timeout": 30
+      },
+      "DependsOn": [
+        "PostUnderscoresearchedUnderscorewordUnderscoretoUnderscoreslackLogGroup"
+      ]
+    },
+    "PostUnderscoresearchedUnderscorewordUnderscoretoUnderscoreslackLambdaVersionb4gmCRElo6GTVM8hBMyzZDEJU7twCNQyKJ1cK1VuI": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "PostUnderscoresearchedUnderscorewordUnderscoretoUnderscoreslackLambdaFunction"
+        },
+        "CodeSha256": "Q9RrN3K/ravxS6/HPGDgRMo4xG0zCUarud7jjpRHHow="
+      }
+    },
     "PutUnderscorepixelsUnderscoretoUnderscores3LambdaFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
@@ -36,7 +72,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/APIs/dev/1533157378151-2018-08-01T21:02:58.151Z/APIs.zip"
+          "S3Key": "serverless/APIs/dev/1533446623923-2018-08-05T05:23:43.923Z/APIs.zip"
         },
         "FunctionName": "APIs-dev-put_pixels_to_s3",
         "Handler": "main.put_pixels_to_s3",
@@ -49,14 +85,14 @@
         "PutUnderscorepixelsUnderscoretoUnderscores3LogGroup"
       ]
     },
-    "PutUnderscorepixelsUnderscoretoUnderscores3LambdaVersionlbOTO4YCIdQXhpKZ47UsajU9Dq6BXBww3QqJTIHDRug": {
+    "PutUnderscorepixelsUnderscoretoUnderscores3LambdaVersionTnCSeLGdUIwoctPRt2iKm1n9GoDAFS3WEuF5pVcdY": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "PutUnderscorepixelsUnderscoretoUnderscores3LambdaFunction"
         },
-        "CodeSha256": "5iOu+650QvXYwzUZVIMsFBUznKSDvoThGfLRGy72J1E="
+        "CodeSha256": "Q9RrN3K/ravxS6/HPGDgRMo4xG0zCUarud7jjpRHHow="
       }
     },
     "PutUnderscoreimagesUnderscoretoUnderscores3UnderscorebyUnderscoreusingUnderscoreicrawlerLambdaFunction": {
@@ -66,7 +102,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/APIs/dev/1533157378151-2018-08-01T21:02:58.151Z/APIs.zip"
+          "S3Key": "serverless/APIs/dev/1533446623923-2018-08-05T05:23:43.923Z/APIs.zip"
         },
         "FunctionName": "APIs-dev-put_images_to_s3_by_using_icrawler",
         "Handler": "main.put_images_to_s3_by_using_icrawler",
@@ -79,14 +115,14 @@
         "PutUnderscoreimagesUnderscoretoUnderscores3UnderscorebyUnderscoreusingUnderscoreicrawlerLogGroup"
       ]
     },
-    "PutUnderscoreimagesUnderscoretoUnderscores3UnderscorebyUnderscoreusingUnderscoreicrawlerLambdaVersion0lJiEgW4mB7WABRsQyb5gDmb6MlsF1UzLpsYbFnapY": {
+    "PutUnderscoreimagesUnderscoretoUnderscores3UnderscorebyUnderscoreusingUnderscoreicrawlerLambdaVersionpHaEWsteslRKWVN6P9mevY3Ete5QJKRrZoJyKYVyP0": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "PutUnderscoreimagesUnderscoretoUnderscores3UnderscorebyUnderscoreusingUnderscoreicrawlerLambdaFunction"
         },
-        "CodeSha256": "5iOu+650QvXYwzUZVIMsFBUznKSDvoThGfLRGy72J1E="
+        "CodeSha256": "Q9RrN3K/ravxS6/HPGDgRMo4xG0zCUarud7jjpRHHow="
       }
     },
     "IcrawlerUnderscoretriggerLambdaFunction": {
@@ -96,7 +132,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/APIs/dev/1533157378151-2018-08-01T21:02:58.151Z/APIs.zip"
+          "S3Key": "serverless/APIs/dev/1533446623923-2018-08-05T05:23:43.923Z/APIs.zip"
         },
         "FunctionName": "APIs-dev-icrawler_trigger",
         "Handler": "main.icrawler_trigger",
@@ -109,14 +145,14 @@
         "IcrawlerUnderscoretriggerLogGroup"
       ]
     },
-    "IcrawlerUnderscoretriggerLambdaVersionBKsY7awNqYKkZtttuUBaREhSxuS5cZPIBEKoAOjvhlQ": {
+    "IcrawlerUnderscoretriggerLambdaVersionHwrBCqDTQ0q7r7aELCGBOCJomit0HtTUh0iJmmFzA": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "IcrawlerUnderscoretriggerLambdaFunction"
         },
-        "CodeSha256": "5iOu+650QvXYwzUZVIMsFBUznKSDvoThGfLRGy72J1E="
+        "CodeSha256": "Q9RrN3K/ravxS6/HPGDgRMo4xG0zCUarud7jjpRHHow="
       }
     },
     "HelloLambdaFunction": {
@@ -126,7 +162,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/APIs/dev/1533157378151-2018-08-01T21:02:58.151Z/APIs.zip"
+          "S3Key": "serverless/APIs/dev/1533446623923-2018-08-05T05:23:43.923Z/APIs.zip"
         },
         "FunctionName": "APIs-dev-hello",
         "Handler": "main.hello",
@@ -139,14 +175,14 @@
         "HelloLogGroup"
       ]
     },
-    "HelloLambdaVersionFgUcLEmScZhOoHbHTm0SqiNzxh9vHUUrmpjYg1WIDm8": {
+    "HelloLambdaVersion8bHNeEyp8t28SmMhmikgibN2KphDy8J2MpotoiKRN8": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "HelloLambdaFunction"
         },
-        "CodeSha256": "5iOu+650QvXYwzUZVIMsFBUznKSDvoThGfLRGy72J1E="
+        "CodeSha256": "Q9RrN3K/ravxS6/HPGDgRMo4xG0zCUarud7jjpRHHow="
       }
     },
     "ApiGatewayRestApi": {
@@ -170,6 +206,30 @@
           ]
         },
         "PathPart": "prod",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceProdSlack": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Ref": "ApiGatewayResourceProd"
+        },
+        "PathPart": "slack",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceProdSlackWord": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Ref": "ApiGatewayResourceProdSlack"
+        },
+        "PathPart": "word",
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         }
@@ -233,6 +293,152 @@
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         }
+      }
+    },
+    "ApiGatewayMethodProdSlackWordPost": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "POST",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceProdSlackWord"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:aws:apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "PostUnderscoresearchedUnderscorewordUnderscoretoUnderscoreslackLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          },
+          "PassthroughBehavior": "NEVER",
+          "RequestTemplates": {
+            "application/json": "\n    #set( $body = $input.json(\"$\") )\n\n    \n  #define( $loop )\n    {\n    #foreach($key in $map.keySet())\n        #set( $k = $util.escapeJavaScript($key) )\n        #set( $v = $util.escapeJavaScript($map.get($key)).replaceAll(\"\\\\'\", \"'\") )\n        \"$k\":\n          \"$v\"\n          #if( $foreach.hasNext ) , #end\n    #end\n    }\n  #end\n\n  {\n    \"body\": $body,\n    \"method\": \"$context.httpMethod\",\n    \"principalId\": \"$context.authorizer.principalId\",\n    \"stage\": \"$context.stage\",\n\n    \"cognitoPoolClaims\" : {\n       \n       \"sub\": \"$context.authorizer.claims.sub\"\n    },\n\n    #set( $map = $input.params().header )\n    \"headers\": $loop,\n\n    #set( $map = $input.params().querystring )\n    \"query\": $loop,\n\n    #set( $map = $input.params().path )\n    \"path\": $loop,\n\n    #set( $map = $context.identity )\n    \"identity\": $loop,\n\n    #set( $map = $stageVariables )\n    \"stageVariables\": $loop\n  }\n\n  ",
+            "application/x-www-form-urlencoded": "\n    #define( $body )\n      {\n      #foreach( $token in $input.path('$').split('&') )\n        #set( $keyVal = $token.split('=') )\n        #set( $keyValSize = $keyVal.size() )\n        #if( $keyValSize >= 1 )\n          #set( $key = $util.escapeJavaScript($util.urlDecode($keyVal[0])) )\n          #if( $keyValSize >= 2 )\n            #set($val = $util.escapeJavaScript($util.urlDecode($keyVal[1])).replaceAll(\"\\\\'\",\"'\"))\n          #else\n            #set( $val = '' )\n          #end\n          \"$key\": \"$val\"#if($foreach.hasNext),#end\n        #end\n      #end\n      }\n    #end\n\n    \n  #define( $loop )\n    {\n    #foreach($key in $map.keySet())\n        #set( $k = $util.escapeJavaScript($key) )\n        #set( $v = $util.escapeJavaScript($map.get($key)).replaceAll(\"\\\\'\", \"'\") )\n        \"$k\":\n          \"$v\"\n          #if( $foreach.hasNext ) , #end\n    #end\n    }\n  #end\n\n  {\n    \"body\": $body,\n    \"method\": \"$context.httpMethod\",\n    \"principalId\": \"$context.authorizer.principalId\",\n    \"stage\": \"$context.stage\",\n\n    \"cognitoPoolClaims\" : {\n       \n       \"sub\": \"$context.authorizer.claims.sub\"\n    },\n\n    #set( $map = $input.params().header )\n    \"headers\": $loop,\n\n    #set( $map = $input.params().querystring )\n    \"query\": $loop,\n\n    #set( $map = $input.params().path )\n    \"path\": $loop,\n\n    #set( $map = $context.identity )\n    \"identity\": $loop,\n\n    #set( $map = $stageVariables )\n    \"stageVariables\": $loop\n  }\n\n  "
+          },
+          "IntegrationResponses": [
+            {
+              "StatusCode": 200,
+              "SelectionPattern": "",
+              "ResponseParameters": {},
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 400,
+              "SelectionPattern": "[\\s\\S]*\\[400\\][\\s\\S]*",
+              "ResponseParameters": {},
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 401,
+              "SelectionPattern": "[\\s\\S]*\\[401\\][\\s\\S]*",
+              "ResponseParameters": {},
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 403,
+              "SelectionPattern": "[\\s\\S]*\\[403\\][\\s\\S]*",
+              "ResponseParameters": {},
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 404,
+              "SelectionPattern": "[\\s\\S]*\\[404\\][\\s\\S]*",
+              "ResponseParameters": {},
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 422,
+              "SelectionPattern": "[\\s\\S]*\\[422\\][\\s\\S]*",
+              "ResponseParameters": {},
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 500,
+              "SelectionPattern": "[\\s\\S]*(Process\\s?exited\\s?before\\s?completing\\s?request|\\[500\\])[\\s\\S]*",
+              "ResponseParameters": {},
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 502,
+              "SelectionPattern": "[\\s\\S]*\\[502\\][\\s\\S]*",
+              "ResponseParameters": {},
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 504,
+              "SelectionPattern": "([\\s\\S]*\\[504\\][\\s\\S]*)|(^[Task timed out].*)",
+              "ResponseParameters": {},
+              "ResponseTemplates": {}
+            }
+          ]
+        },
+        "MethodResponses": [
+          {
+            "ResponseParameters": {},
+            "ResponseModels": {},
+            "StatusCode": 200
+          },
+          {
+            "ResponseParameters": {},
+            "ResponseModels": {},
+            "StatusCode": 400
+          },
+          {
+            "ResponseParameters": {},
+            "ResponseModels": {},
+            "StatusCode": 401
+          },
+          {
+            "ResponseParameters": {},
+            "ResponseModels": {},
+            "StatusCode": 403
+          },
+          {
+            "ResponseParameters": {},
+            "ResponseModels": {},
+            "StatusCode": 404
+          },
+          {
+            "ResponseParameters": {},
+            "ResponseModels": {},
+            "StatusCode": 422
+          },
+          {
+            "ResponseParameters": {},
+            "ResponseModels": {},
+            "StatusCode": 500
+          },
+          {
+            "ResponseParameters": {},
+            "ResponseModels": {},
+            "StatusCode": 502
+          },
+          {
+            "ResponseParameters": {},
+            "ResponseModels": {},
+            "StatusCode": 504
+          }
+        ]
       }
     },
     "ApiGatewayMethodProdImageNewPost": {
@@ -819,7 +1025,7 @@
         ]
       }
     },
-    "ApiGatewayDeployment1533157379814": {
+    "ApiGatewayDeployment1533446626200": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -828,11 +1034,45 @@
         "StageName": "dev"
       },
       "DependsOn": [
+        "ApiGatewayMethodProdSlackWordPost",
         "ApiGatewayMethodProdImageNewPost",
         "ApiGatewayMethodProdImageIcrawlPost",
         "ApiGatewayMethodProdImageIcrawlTriggerPost",
         "ApiGatewayMethodProdHelloGet"
       ]
+    },
+    "PostUnderscoresearchedUnderscorewordUnderscoretoUnderscoreslackLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "PostUnderscoresearchedUnderscorewordUnderscoretoUnderscoreslackLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:aws:execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
     },
     "PutUnderscorepixelsUnderscoretoUnderscores3LambdaPermissionApiGateway": {
       "Type": "AWS::Lambda::Permission",
@@ -973,28 +1213,34 @@
         "Ref": "ServerlessDeploymentBucket"
       }
     },
+    "PostUnderscoresearchedUnderscorewordUnderscoretoUnderscoreslackLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "PostUnderscoresearchedUnderscorewordUnderscoretoUnderscoreslackLambdaVersionb4gmCRElo6GTVM8hBMyzZDEJU7twCNQyKJ1cK1VuI"
+      }
+    },
     "PutUnderscorepixelsUnderscoretoUnderscores3LambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "PutUnderscorepixelsUnderscoretoUnderscores3LambdaVersionlbOTO4YCIdQXhpKZ47UsajU9Dq6BXBww3QqJTIHDRug"
+        "Ref": "PutUnderscorepixelsUnderscoretoUnderscores3LambdaVersionTnCSeLGdUIwoctPRt2iKm1n9GoDAFS3WEuF5pVcdY"
       }
     },
     "PutUnderscoreimagesUnderscoretoUnderscores3UnderscorebyUnderscoreusingUnderscoreicrawlerLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "PutUnderscoreimagesUnderscoretoUnderscores3UnderscorebyUnderscoreusingUnderscoreicrawlerLambdaVersion0lJiEgW4mB7WABRsQyb5gDmb6MlsF1UzLpsYbFnapY"
+        "Ref": "PutUnderscoreimagesUnderscoretoUnderscores3UnderscorebyUnderscoreusingUnderscoreicrawlerLambdaVersionpHaEWsteslRKWVN6P9mevY3Ete5QJKRrZoJyKYVyP0"
       }
     },
     "IcrawlerUnderscoretriggerLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "IcrawlerUnderscoretriggerLambdaVersionBKsY7awNqYKkZtttuUBaREhSxuS5cZPIBEKoAOjvhlQ"
+        "Ref": "IcrawlerUnderscoretriggerLambdaVersionHwrBCqDTQ0q7r7aELCGBOCJomit0HtTUh0iJmmFzA"
       }
     },
     "HelloLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "HelloLambdaVersionFgUcLEmScZhOoHbHTm0SqiNzxh9vHUUrmpjYg1WIDm8"
+        "Ref": "HelloLambdaVersion8bHNeEyp8t28SmMhmikgibN2KphDy8J2MpotoiKRN8"
       }
     },
     "ServiceEndpoint": {
