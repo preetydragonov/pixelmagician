@@ -9,8 +9,8 @@ import asyncio
 
 
 def sendQueryWordToSlack(queryWord):
-    formattedQueryWord = formatDataForSlackRequest(queryWord)
-    request = Request(URL().POST_SEARCHED_WORD_TO_SLACK, formattedQueryWord, requestType="POST")
+    formattedQueryWord = formatDataForSlackRequest(queryWord, requestType="POST")
+    request = Request(URL().POST_SEARCHED_WORD_TO_SLACK, formattedQueryWord)
     urlopen(request)
 
 def internet_resource_getter(post_data):
