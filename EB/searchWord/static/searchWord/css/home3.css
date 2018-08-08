@@ -18,6 +18,22 @@ header {
 #contents h2:before {
     content: “▽ “;
 }
+.search_box {
+    transition: box-shadow .3s;
+    width: 324px;
+    height: 44px;
+    margin: 50px;
+    border-radius:2px;
+    border: 1px solid #ccc;
+    background: #fff;
+    float: left;
+    font: 18px arial,sans-serif;
+    box-shadow: 0 0 0 0px rgba(0,0,0,0.08);
+}
+.search_box:hover {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16);
+    transition: box-shadow 200ms cubic-bezier(0.4,0.0,0.2,1);
+}
 /* 이미지를 자동으로 화면에 맞게 리사이즈 되도록 */
 img {
     max-width: 100%; /* 이미지의 최대사이즈 */
