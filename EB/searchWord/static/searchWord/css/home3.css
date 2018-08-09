@@ -41,20 +41,15 @@ header {
 .container-1 input#link_id::-webkit-input-placeholder {
    color: #fff;
 }
- 
 .container-1 input#link_id:-moz-placeholder { /* Firefox 18- */
    color: #fff;  
 }
- 
 .container-1 input#link_id::-moz-placeholder {  /* Firefox 19+ */
    color: #fff;  
 }
- 
 .container-1 input#link_id:-ms-input-placeholder {  
    color: #fff;  
 }
-
-
 .container-1 input#link_id:hover {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16);
     transition: box-shadow 200ms cubic-bezier(0.4,0.0,0.2,1);
