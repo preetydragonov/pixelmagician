@@ -2,7 +2,7 @@ class APPNAME(object):
     SEARCHWORD = "searchWord"
 
 class HTML(object):
-    HOME = "home.html"
+    HOME = "google_home.html"
     LOADING = "loading.html"
     AFTER_SEARCHING_WORD = "afterSearchingWord.html"
 
