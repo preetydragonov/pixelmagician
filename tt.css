@@ -1,0 +1,66 @@
+header {
+    padding: 0.8em;
+    color: #FFF;
+    font-size: 150%;
+    text-align: center;
+    background: #e14d43;
+}
+#contents {
+    max-width: 780px;
+    margin: 0 auto;
+    text-align: center;
+}
+#contents h2 {
+    margin: 2em 0 1em;
+    font-size: 120%;
+    color: #b49543;
+}
+#contents h2:before {
+    content: “▽ “;
+}
+.container-1{
+  width: 300px;
+  vertical-align: middle;
+  white-space: nowrap;
+  position: relative;
+}
+.container-1 input#link_id {
+    transition: box-shadow .3s;
+    width: 324px;
+    height: 44px;
+    margin: 50px;
+    border-radius:2px;
+    -webkit-border-radius:2px;
+    -moz-border-radius:2px;
+    border: 1px solid #ccc;
+    background: #fff;
+    float: left;
+    font: 18px arial,sans-serif;
+    box-shadow: 0 0 0 0px rgba(0,0,0,0.08);
+}
+.container-1 input#link_id::-webkit-input-placeholder {
+   color: #fff;
+}
+
+.container-1 input#link_id:-moz-placeholder { /* Firefox 18- */
+   color: #fff;
+}
+
+.container-1 input#link_id::-moz-placeholder {  /* Firefox 19+ */
+   color: #fff;
+}
+
+.container-1 input#link_id:-ms-input-placeholder {
+   color: #fff;
+}
+.container-1 input#link_id:focus {
+    outline:none;
+}
+.container-1 input#link_id:hover {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16);
+    transition: box-shadow 200ms cubic-bezier(0.4,0.0,0.2,1);
+}
+/* 이미지를 자동으로 화면에 맞게 리사이즈 되도록 */
+img {
+    max-width: 100%; /* 이미지의 최대사이즈 */
+    width /***/: auto; /* IE8 */

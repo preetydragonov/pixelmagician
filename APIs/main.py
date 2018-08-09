@@ -7,12 +7,15 @@ import urllib.request
 import boto3
 from botocore.errorfactory import ClientError
 import random
+from random import randint
 import io
 from PIL import Image
 import ssl
 from icrawler.builtin import GoogleImageCrawler
 import os
 from os import path
+from k_means import (get_points,
+                      kmeans)
 from base64 import b64encode
 
 s3 = boto3.client('s3')
@@ -24,9 +27,7 @@ def post_searched_word_to_slack(event, context):
     #ENCRYPTED_HOOK_URL = os.environ['kmsEncryptedHookUrl']
     SLACK_CHANNEL = 'get-searched-word'
     HOOK_URL = "https://hooks.slack.com/services/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"
-    
-    word = json.loads(event['Records'][0]['lambda-invoke']['word'])
-
+    word = event['Records'][0]['lambda-invoke']['word']
     slack_message = {
         'channel': SLACK_CHANNEL,
         'text': word
@@ -65,7 +66,7 @@ def put_pixels_to_s3(event, context):
         print("Cannot read response.")
         raise exception
     try:
-        pixeled_image_stream = getRandomPixeledImageFromOriginalImageURL(requested_image)
+        pixeled_image_stream = getPixeledImageFromOriginalImageURL(requested_image, process_type="DOMINANT")
     except Exception as exception:
         print("Cannot get random pixeled image.")
         raise exception
@@ -284,74 +285,67 @@ def google_images_get_all_items(page):
     # newly added pixeled Items
     return originalUrls, pixeledUrls
 
-
-# Getting random pixeled image url
-def getRandomPixeledImageURLFromOriginalImageURL(requestedImage):
-    # get newImage's random pixel
-    # This restores the same behavior as before.
-    #    context = ssl._create_unverified_context()
-    #    headers = {}
-    #    headers['User-Agent'] = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"
-    #    req = urllib.request.Request(url, headers = headers)
-    #    requestedImage = urllib.request.urlopen(req, context=context).read()
-    imageInBytes = io.BytesIO(requestedImage)
-    requestedImageInByte = Image.open(imageInBytes)
-    pixels = requestedImageInByte.load()
-    width, height = requestedImageInByte.size
-    randomPixel = pixels[random.randint(0, width), random.randint(0, height)]
-
-    if not isinstance(randomPixel, tuple):
-        randomPixel = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-
-    if len(randomPixel) < 3:
-        randomPixel = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-
-    # get newImage's width and height
-    width, height = requestedImageInByte.size
-    rate = round(width / height, 2)
-    newWidth = 100
-    newHeight = int(100 * rate)
-
-    print(newWidth, newHeight, randomPixel)
-    # create newImage with random pixel, width and height
-    newImage = Image.new("RGB", (newWidth, newHeight), randomPixel)
-
-    key = 'out'
-    newImage.save('./out.jpg')
-    # upload
-    #    stream = io.BytesIO()
-    #    newImage.save(stream, format="png")
-    #    stream.seek(0)
-    #    key = "testFileNew.png"
-    #    s3.put_object(Bucket=bucket, Key=key, Body =stream,ContentType='image/png',ACL='public-read')
-    #
-    return key
-
-
-def getRandomPixeledImageFromOriginalImageURL(requested_image):
+def getPixeledImageFromOriginalImageURL(requested_image, process_type):
     opened_image = openImage(requested_image)
-    random_pixel = getRandomPixel(opened_image)
-    # random_pixel = get_main_pixel(opened_image)
-    if not isinstance(random_pixel, tuple):
-        random_pixel = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-    if len(random_pixel) < 3:
-        random_pixel = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+    if process_type == "RANDOM":
+        print("extract pixel randomly.")
+        pixel = get_random_pixel(opened_image)
+    elif process_type == "MAX_FREQUENT":
+        print("extract the most frequent pixel.")
+        pixel = get_max_frequent_pixel(opened_image)
+    elif process_type == "DOMINANT" :
+        print("extract the most dominant pixel.")
+        pixel = get_dominant_pixel(opened_image)
+    else:
+        print("pixel type is not suggested. just using random way.")
+        pixel = get_random_pixel(opened_image)
+
+    if not isinstance(pixel, tuple):
+        print("pixel not in tuple form")
+        pixel = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+    if len(pixel) < 3:
+        print("pixel length less than 3")
+        pixel = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
     stream = io.BytesIO()
-    pixeled_image = createPixeledImageInSmallerSize(opened_image, random_pixel)
+    pixeled_image = createPixeledImageInSmallerSize(opened_image, pixel)
     pixeled_image.save(stream, format="jpeg")
     stream.seek(0)
     return stream
 
-def getRandomPixel(imageInByte):
+def get_dominant_pixel(imageInByte, n=5):
+    imageInByte.thumbnail((200, 200))
+    points = get_points(imageInByte)
+    clusters = kmeans(points, n, 1)
+    dominant_pixels = [map(int, c.center.coords) for c in clusters]
+
+    white = 255*3
+    non_white_vivid_pixels = []
+    white_pixels = []
+
+    for pixel in dominant_pixels:
+        dominant_pixel = list(pixel)
+        if sum(dominant_pixel) < white - 50:
+            non_white_vivid_pixels.append(dominant_pixel)
+        else:
+            white_pixels.append(dominant_pixel)
+
+    if len(non_white_vivid_pixels) != 0 :
+        randomly_picked_dominant_and_vivid_pixel = non_white_vivid_pixels[randint(0, len(non_white_vivid_pixels) -1)]
+        return tuple(randomly_picked_dominant_and_vivid_pixel)
+    else:
+        randomly_picked_white_pixel = white_pixels[randint(0, len(white_pixels) -1)]
+        return tuple(randomly_picked_white_pixel)
+
+def get_random_pixel(imageInByte):
     pixels = imageInByte.load()
     width, height = imageInByte.size
     randomPixel = pixels[random.randint(0, width), random.randint(0, height)]
     return randomPixel
 
-
-def get_main_pixel(imageInByte):
-    colors = imageInByte.getcolors(256) #put a higher value if there are many colors in your image
+def get_max_frequent_pixel(imageInByte):
+    width, height = imageInByte.size
+    colors = imageInByte.getcolors(width * height) #put a higher value if there are many colors in your image
     max_occurence, most_present = 0, 0
     try:
         for c in colors:
@@ -368,9 +362,9 @@ def openImage(image):
 def createPixeledImageInSmallerSize(imageInByte, randomPixel):
     width, height = imageInByte.size
     rate = round(width / height, 2)
-    newHeight = 300
-    newWidth = int(300 * rate)
-    return Image.new("RGB", (newWidth, newHeight), randomPixel)
+    new_height = 300
+    new_width = int(new_height * rate)
+    return Image.new("RGB", (new_width, new_height), randomPixel)
 
 
 # def getRandomPixeledImageFromImageURL(url):
