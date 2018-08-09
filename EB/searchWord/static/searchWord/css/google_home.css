@@ -33,7 +33,6 @@ a:hover {
     top: 5px;
     margin-right: 5px;
     margin-left: 5px;
-    background-image: url("{{ STATIC_URL }}searchWord/images/apps_before_hover.png")
 }
 
 .nav_icon_box1:hover {
@@ -48,7 +47,6 @@ a:hover {
     top: 6px;
     margin-right: 5px;
     margin-left: 5px;
-    background-image: url("{{ STATIC_URL }}searchWord/images/login.png")
 }
 
 .nav_icon_box2:hover {
@@ -63,7 +61,6 @@ a:hover {
     top: 12px;
     margin-right: 5px;
     margin-left: 5px;
-    background-image: url("{{ STATIC_URL }}searchWord/images/login.png")
 }
 
 .search_bar {
