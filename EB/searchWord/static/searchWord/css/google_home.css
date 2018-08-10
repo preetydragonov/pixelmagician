@@ -167,7 +167,7 @@ a:hover {
     border: 1px solid #ccc;
     background: #fff;
     font: 18px arial,sans-serif;
-    box-shadow: 0 0 0 0px rgba(0,0,0,0.08);
+    Box-Shadow:0px 1px 2px 1px #Ccc;
     overflow:hidden;
 }
 #text_box::-webkit-input-placeholder {
