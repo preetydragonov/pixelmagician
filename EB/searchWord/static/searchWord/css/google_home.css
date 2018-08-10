@@ -36,7 +36,7 @@ a:hover {
 }
 
 .nav_icon_box1:hover {
-    background-image: url("{{ STATIC_URL }}searchWord/images/apps_after_hover.png")
+    background-image: url(static("searchWord/images/apps_after_hover.png"))
 }
 
 .nav_icon_box2 {
@@ -50,7 +50,7 @@ a:hover {
 }
 
 .nav_icon_box2:hover {
-    background-image: url("{{ STATIC_URL }}searchWord/images/login.png")
+    background-image: url(static("searchWord/images/login.png"))
 }
 
 .nav_profile_box {
