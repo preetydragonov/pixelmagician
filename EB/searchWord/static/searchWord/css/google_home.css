@@ -56,6 +56,8 @@ a:hover {
 }
 
 .nav_profile_box {
+    width: 59;
+    height: 29;
     display: inline-block;
     position: relative;
     top: 12px;
