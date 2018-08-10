@@ -31,7 +31,7 @@ a:hover {
     height: 22px;
     display: inline-block;
     position: relative;
-    top: 5px;
+    top: 10px;
     margin-right: 5px;
     margin-left: 5px;
     background-image: url("../images/apps_before_hover.png");
