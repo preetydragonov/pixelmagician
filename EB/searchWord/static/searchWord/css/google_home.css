@@ -33,11 +33,11 @@ a:hover {
     top: 5px;
     margin-right: 5px;
     margin-left: 5px;
-    background-image: url("/static/searchWord/images/apps_before_hover.png")
+    background-image: url("/static/searchWord/images/apps_before_hover.png");
 }
 
 .nav_icon_box1:hover {
-    background-image: url("/static/searchWord/images/apps_after_hover.png")
+    background-image: url("/static/searchWord/images/apps_after_hover.png");
 }
 
 .nav_icon_box2 {
@@ -52,7 +52,7 @@ a:hover {
 }
 
 .nav_icon_box2:hover {
-    background-image: url("/static/searchWord/images/login.png")
+    background-image: url("/static/searchWord/images/login.png");
 }
 
 .nav_profile_box {
@@ -63,7 +63,7 @@ a:hover {
     top: 12px;
     margin-right: 5px;
     margin-left: 5px;
-    background-image: url("/static/searchWord/images/login.png")
+    background-image: url("/static/searchWord/images/login.png");
 }
 
 .search_bar {
