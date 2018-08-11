@@ -22,9 +22,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '!gf^()8k9g(^=4f17km#nw#$49qq0=3g&xa*2@vl@pe71t^p#y'
 
-# SSL default
-#SECURE_SSL_REDIRECT = True
-
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = True
 
@@ -46,8 +43,6 @@ INSTALLED_APPS = [
     #ONLY FOR AWS! hide 1 codeline below when locally developing
     'storages',
     'searchWord',
-    #social login
-    'social_django',
     ]
 
 MIDDLEWARE = [
@@ -58,9 +53,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #social login
-    'social_django.middleware.SocialAuthExceptionMiddleware',
-    'djangosecure.middleware.SecurityMiddleware'
 ]
 
 ROOT_URLCONF = 'ys_webpage.urls'
@@ -76,8 +68,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'social_django.context_processors.backends',
-                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -95,12 +85,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
-AUTHENTICATION_BACKENDS = (
-    'social_core.backends.facebook.FacebookOAuth2',
-    'django.contrib.auth.backends.ModelBackend',
-)
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
