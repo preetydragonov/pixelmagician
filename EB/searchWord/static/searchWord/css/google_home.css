@@ -49,7 +49,6 @@ a:hover {
     top: 6px;
     margin-right: 5px;
     margin-left: 5px;
-
 }
 
 .nav_icon_box2:hover {
@@ -147,7 +146,7 @@ a:hover {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 135px;
+    margin-top: 150px;
     height: 92px; width: 272px;
     overflow: hidden;
 }
@@ -167,7 +166,6 @@ a:hover {
     border: 1px solid #ccc;
     background: #fff;
     font: 18px arial,sans-serif;
-    Box-Shadow:0px 1px 2px 1px #Ccc;
     overflow:hidden;
 }
 #text_box::-webkit-input-placeholder {
