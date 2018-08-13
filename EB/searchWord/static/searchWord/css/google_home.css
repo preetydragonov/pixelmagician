@@ -56,8 +56,8 @@ a:hover {
 }
 
 .nav_profile_box {
-    width: 59;
-    height: 29;
+    width: 67;
+    height: 31;
     display: inline-block;
     position: relative;
     top: 12px;
@@ -146,7 +146,7 @@ a:hover {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 150px;
+    margin-top: 165px;
     height: 92px; width: 272px;
     overflow: hidden;
 }
