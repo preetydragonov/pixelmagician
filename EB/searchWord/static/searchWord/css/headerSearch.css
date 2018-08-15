@@ -28,7 +28,7 @@ a {
     float: right;
     top: 50%;
     transform: translate(0%, -50%);
-    background-image: url("./apps_before_hover.png");
+    background-image: url("../images/apps_before_hover.png");
 }
 
 .nav_icon_box1:hover {
@@ -45,11 +45,11 @@ a {
     transform: translate(0%, -50%);
     margin-right: 20px;
     margin-left: 20px;
-    background-image: url("./login.png");
+    background-image: url("../images/login.png");
 }
 
 .google_logo {
-    background-image: url("./2000px-Google_2015_logo.svg.png");
+    background-image: url("../images/2000px-Google_2015_logo.svg.png");
     background-size: cover;
     width: 120px;
     height: 40px;
