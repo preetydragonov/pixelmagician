@@ -27,7 +27,7 @@ def home(request):
                   template_name,
                   context)
 
-def loading(request, queryWord):    
+def loading(request, queryWord): 
     parsedQueryWord = urllib.parse.unquote(queryWord)
     putImagesToS3(parsedQueryWord)
     sendQueryWordToSlack(parsedQueryWord)

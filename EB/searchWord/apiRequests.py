@@ -62,9 +62,10 @@ def createDateRangeList(yearRange):
     dateList = []
     for i in range(yearRange):
         year = 2018 - i
-        early = ((year, 1, 1), (year, 6, 30))
+        for month in range(1, 13):
+        early = ((year, month, 1), (year, month, 15))
         dateList.append(early)
-        late = ((year, 7, 1), (year, 12, 31))
+        late = ((year, month, 1), (year, month, 30))
         dateList.append(late)
     return dateList
 
