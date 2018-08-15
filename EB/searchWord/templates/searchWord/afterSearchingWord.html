@@ -13,6 +13,19 @@
 	<body>
 
 		<!-- HEADER -->
+		<div class="headsearch">
+        	    <div class="head_container">
+                	<a href= "/">
+                    	    <div class="google_logo"></div>
+                	</a>
+                	<input id="text_box" type="text" onkeypress="if(event.keyCode==13){const textValue = document.getElementById('text_box').value; const encoded_textValue = encodeURIComponent(textValue); location.href = 'https://www.google.co.kr'}" placeholder="search your l
+oading page..."/>
+                    	<div class="apps_profile_box_container">
+                        	<div class="nav_profile_box"></div>
+                        	<div class="nav_icon_box1"></div>
+                   	</div>
+            	    </div>
+                </div>
 		<div id="header_wrap" class="outer">
 			<header class="inner">
 				<h1 id="project_title">Google-image-layout</h1>
@@ -22,19 +35,6 @@
 		<!-- MAIN CONTENT -->
 		<div id="main_content_wrap" class="outer">
 			<section id="main_content" class="inner">
-				            <div class="headsearch">
-            <div class="head_container">
-                <a href= "/">
-                    <div class="google_logo"></div>
-                </a>
-                <input id="text_box" type="text" onkeypress="if(event.keyCode==13){const textValue = document.getElementById('text_box').value; const encoded_textValue = encodeURIComponent(textValue); location.href = 'https://www.google.co.kr'}" placeholder="search your l
-oading page..."/>
-                    <div class="apps_profile_box_container">
-                        <div class="nav_profile_box"></div>
-                        <div class="nav_icon_box1"></div>
-                    </div>
-            </div>
-            </div>
 				<div class="google-image-layout" data-google-image-layout data-max-height="250">
 					{% for image in images %}
 					    <img src="{{ image }}"/>
