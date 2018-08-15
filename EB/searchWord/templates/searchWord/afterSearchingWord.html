@@ -19,14 +19,29 @@
 		    </div>
             </div>
 	    </div>
-        <!--div id="body">
+
+	    <!-- MAIN CONTENT -->
+            <div id="main_content_wrap" class="outer">
+                <section id="main_content" class="inner">
+                    <div class="google-image-layout" data-google-image-layout data-max-height="250">
+                        {% for image in images %}
+                            <img src="{{ image }}"/>
+                        {% endfor %}
+	            </div>
+            </div>
+
+            <!-- FOOTER  -->
+            <script src="{% static 'searchWord/js/imagesloaded.pkgd.min.js' %}"></script>
+            <script src="{% static 'searchWord/js/google-image-layout.js' %}"></script>
+            <script src="{% static 'searchWord/js/main.js' %}" async=false></script>
+
             <script type="text/javascript">
-                    function goTo(){
-                        const textValue = document.getElementById("text_box").value;
-                        const encoded_textValue = encodeURIComponent(textValue);
-                        location.replace("www.google.co.kr", '_self');
-                    }
-            </script>
-        </div-->
+                var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+                document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));</script>
+            <script type="text/javascript">
+                try {
+                     var pageTracker = _gat._getTracker("UA-54605887-1");
+                     pageTracker._trackPageview();
+                } catch(err) {}</script>
     </body>
 </html>
