@@ -63,10 +63,10 @@ def createDateRangeList(yearRange):
     for i in range(yearRange):
         year = 2018 - i
         for month in range(1, 13):
-        early = ((year, month, 1), (year, month, 15))
-        dateList.append(early)
-        late = ((year, month, 1), (year, month, 30))
-        dateList.append(late)
+            early = ((year, month, 1), (year, month, 15))
+            dateList.append(early)
+            late = ((year, month, 1), (year, month, 30))
+            dateList.append(late)
     return dateList
 
 def formatDataForS3Request(data, date_range, requestType):
