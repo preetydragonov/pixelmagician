@@ -4,6 +4,7 @@
     <head>
         <title></title>
 	<link rel="stylesheet" type="text/css" href="{% static 'searchWord/css/headerSearch.css' %}">
+	<script src="{% static 'searchWord/js/goTo.js' %}"></script>
         <meta charset=“UTF-8”>
     </head>
     <body>
@@ -12,7 +13,7 @@
 		<a href= "/">
                     <div class="google_logo"></div>
 		</a>
-                <input id="text_box" type="text" onkeypress="if(event.keyCode==13){const textValue = document.getElementById('text_box').value; const encoded_textValue = encodeURIComponent(textValue); location.href = 'https://www.google.co.kr'}" placeholder="search your loading page..."/>
+		<input id="text_box" type="text" onkeypress="if(event.keyCode==13){goTo();}" placeholder="search your loading page..."/>
 		    <div class="apps_profile_box_container">
                         <div class="nav_profile_box"></div>
                         <div class="nav_icon_box1"></div>
