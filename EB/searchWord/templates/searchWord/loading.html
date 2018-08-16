@@ -109,6 +109,10 @@
 			duration: 600
 		});
 	</script>
-	<script src="{% static 'searchWord/js/passWordToS3.js' %}" queryWordOnScript="{{ queryWord }}"></script>
+	<script>
+		parsedQueryWord = document.currentScript.getAttribute('queryWordOnScript')
+	        setTimeout(function(){location.replace("/board/"+parsedQueryWord, '_self')}, 7000)
+	</script>
+	<!--src="{% static 'searchWord/js/passWordToS3.js' %}" queryWordOnScript="{{ queryWord }}"></script-->
     </body>
 </html>
