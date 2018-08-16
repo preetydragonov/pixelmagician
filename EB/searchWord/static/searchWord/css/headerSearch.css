@@ -3,15 +3,6 @@
 a {
 }
 
-.head_container{
-    height: 60px;
-    min-width: 1000px;
-    position:relative;
-    overflow:hidden;
-    margin-top: 20px;
-    display:block;
-}
-
 #submit {
     position: absolute;
     top: 50%;
@@ -30,13 +21,23 @@ a {
     transform: translate(0%, -50%);
 }
 
+.head_container{
+    height: 60px;
+    min-width:950px;
+    position: relative;
+    overflow:hidden;
+    margin-top: 20px;
+    display:block;
+    overflow: hidden;
+}
+
 .apps_profile_box_container{
     height: 54px;
     width: 150px;
-    position: absolute;
-    float:right;
-    top: 50%;
+    position: relative;
+    top:50%;
     left: 0%;
+    float:right;
     transform: translate(0%, -50%);
     overflow:hidden;
 }
@@ -103,8 +104,8 @@ a {
     transition: box-shadow .3s;
     width: 632px;
     height: 44px;
-    top:50%;
-    left:17%;
+    top: 50%;
+    left: 17%;
     transform: translate(0%, -50%);
     margin-left: 5px;
     margin-right: 5px;
