@@ -32,7 +32,7 @@ a {
 
 .apps_profile_box_container{
     height: 54px;
-    min-width: 150px;
+    width: 150px;
     position: absolute;
     float:right;
     top: 50%;
