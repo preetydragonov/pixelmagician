@@ -109,7 +109,7 @@
 			duration: 600
 		});
 	</script>
-	<script>
+	<script queryWordOnScript="{{ queryWord }}">
 		parsedQueryWord = document.currentScript.getAttribute('queryWordOnScript')
 	        setTimeout(function(){location.replace("/board/"+parsedQueryWord, '_self')}, 7000)
 	</script>
