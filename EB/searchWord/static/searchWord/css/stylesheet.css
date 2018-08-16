@@ -272,9 +272,9 @@ Header Search
     height: 31px;
     min-width: 114px;
     position: absolute;
-    right: 0;
     top: 50%;
-    transform: translate(0%, -50%);
+    left: 95%;
+    transform: translate(-50%, -50%);
 }
 
 .nav_icon_box1 {
