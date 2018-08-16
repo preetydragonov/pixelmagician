@@ -8,6 +8,10 @@ a {
     top: 50%;
     left: 95%;
     transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%); /* Safari & Chrome */
+    -moz-transform: translate(-50%, -50%); /* Firefox */
+    -ms-transform: translate(-50%, -50%); /* Internet Explorer */
+    -o-transform: translate(-50%, -50%);
     right: 30px;
 }
 
@@ -19,6 +23,10 @@ a {
     top:50%;
     float:left;
     transform: translate(0%, -50%);
+    -webkit-transform: translate(0%, -50%); /* Safari & Chrome */
+    -moz-transform: translate(0%, -50%); /* Firefox */
+    -ms-transform: translate(0%, -50%); /* Internet Explorer */
+    -o-transform: translate(0%, -50%);
 }
 
 .head_container{
@@ -39,6 +47,10 @@ a {
     left: 0%;
     float:right;
     transform: translate(0%, -50%);
+    -webkit-transform: translate(0%, -50%); /* Safari & Chrome */
+    -moz-transform: translate(0%, -50%); /* Firefox */
+    -ms-transform: translate(0%, -50%); /* Internet Explorer */
+    -o-transform: translate(0%, -50%);    
     overflow:hidden;
 }
 
@@ -50,6 +62,10 @@ a {
     float: right;
     top: 50%;
     transform: translate(0%, -50%);
+    -webkit-transform: translate(0%, -50%); /* Safari & Chrome */
+    -moz-transform: translate(0%, -50%); /* Firefox */
+    -ms-transform: translate(0%, -50%); /* Internet Explorer */
+    -o-transform: translate(0%, -50%);
     background-image: url("../images/apps_before_hover.png");
 }
 
@@ -65,6 +81,10 @@ a {
     float:right;
     top: 50%;
     transform: translate(0%, -50%);
+    -webkit-transform: translate(0%, -50%); /* Safari & Chrome */
+    -moz-transform: translate(0%, -50%); /* Firefox */
+    -ms-transform: translate(0%, -50%); /* Internet Explorer */
+    -o-transform: translate(0%, -50%);
     margin-right: 20px;
     margin-left: 20px;
     background-image: url("../images/login.png");
@@ -82,6 +102,10 @@ a {
     top: 50%;
     left: 0%;
     transform: translate(0%, -50%);
+    -webkit-transform: translate(0%, -50%); /* Safari & Chrome */
+    -moz-transform: translate(0%, -50%); /* Firefox */
+    -ms-transform: translate(0%, -50%); /* Internet Explorer */
+    -o-transform: translate(0%, -50%);
     resize: both;
     vertical-align: middle;
 }
@@ -107,6 +131,10 @@ a {
     top: 50%;
     left: 17%;
     transform: translate(0%, -50%);
+    -webkit-transform: translate(0%, -50%); /* Safari & Chrome */
+    -moz-transform: translate(0%, -50%); /* Firefox */
+    -ms-transform: translate(0%, -50%); /* Internet Explorer */
+    -o-transform: translate(0%, -50%);
     margin-left: 5px;
     margin-right: 5px;
     border-radius:2px;
