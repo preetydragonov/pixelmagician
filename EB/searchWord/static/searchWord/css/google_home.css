@@ -216,6 +216,15 @@ a:hover {
 }
 
 @media only screen and (max-width: 500px){
+#nav_profile_box {
+    width: 67;
+    height: 31;
+    display: inline-block;
+    position: relative;
+    top: 12px;
+    margin-right: 5px;
+    background-image: url("../images/login.png");
+}
 #images_text {
     color: #4285f4;
     font: 16px/16px roboto-regular, arial, sans-serif;
@@ -225,7 +234,7 @@ a:hover {
     transform: translate(0%, -50%);
 }	
 #header {
-    width: 90%;
+    width: 100%;
     height: 70px;
 }	
 #logo_and_image_text_container{
@@ -233,8 +242,8 @@ a:hover {
     height: 94px;
     position: relative;
     top: 50%;
-    left: 50%;
-    margin-top: 180px;
+    left: 52%;
+    margin-top: 140px;
     transform: translate(-50%, -50%);
 }
 
@@ -307,7 +316,9 @@ a:hover {
 #text_box:focus {
     outline:none;
 }
+@media only screen and (min-width: 1023px){
 #text_box:hover {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16);
     transition: box-shadow 200ms cubic-bezier(0.4,0.0,0.2,1);
+}
 }
