@@ -208,7 +208,8 @@ a:hover {
     overflow:hidden;
 }
 
-#text_box:media(max-width: 500px){
+@media (max-width: 500px){
+.text_box{
     padding: 10px;
     display: block;
     transition: box-shadow .3s;
@@ -225,7 +226,8 @@ a:hover {
     border: 1px solid #ccc;
     background: #fff;
     font: 18px arial,sans-serif;
-    overflow:hidden;<Paste>
+    overflow:hidden;
+}
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
