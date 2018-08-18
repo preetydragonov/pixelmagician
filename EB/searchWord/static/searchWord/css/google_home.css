@@ -179,7 +179,14 @@ a:hover {
     margin-right: auto;
     margin-top: -30px;
 }
-
+#images_text {
+    color: #4285f4;
+    font: 16px/16px roboto-regular, arial, sans-serif;
+    position: absolute;
+    top: 88%;
+    left: 75%;
+    transform: translate(0%, -50%);
+}
 #submit {
     position: relative;
     top: 50%;
@@ -209,6 +216,10 @@ a:hover {
 }
 
 @media only screen and (max-width: 500px){
+#header {
+    width: 90%;
+    height: 70px;
+}	
 #logo_and_image_text_container{
     width: 274px;
     height: 94px;
@@ -231,7 +242,7 @@ a:hover {
 #submit {
     position: relative;
     top: 50%;
-    left: 88%;
+    left: 90%;
     transform: translate(-50%, -50%);
     right: 30px;
 }
