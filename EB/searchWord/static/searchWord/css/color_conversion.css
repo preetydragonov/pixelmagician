@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,500");
+html, body {
+  height: 100%;
+  overflow: auto;
+}
+
+body, .picker {
+  font-family: 'Roboto', sans-serif;
+  min-height: 100vh;
+  cursor: none;
+  background: hotpink;
+}
+
+.picker {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.cursor {
+  z-index: 2;
+  position: fixed;
+  width: 2rem;
+  height: 2rem;
+  top: 110vh;
+  pointer-events: none;
+}
+.cursor g {
+  fill: currentColor;
+  transition: fill 200ms linear;
+}
+
+header {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  padding: 2vw;
+  transform: translate(-50%, -50%);
+  transition: color 200ms linear;
+}
+
+h1, h2 {
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
+  white-space: nowrap;
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-size: calc(0.4rem + 1vw);
+  font-weight: 100;
+}
+
+h2 {
+  margin-bottom: 0.025em;
+  font-size: calc(0.8rem + 2vw);
+}
+
+.picked {
+  pointer-events: none;
+  position: fixed;
+  width: 10vw;
+  height: 10vw;
+  border-radius: 100%;
+  -webkit-transform: translate(-50%, -50%) scale(0.2);
+          transform: translate(-50%, -50%) scale(0.2);
+}
