@@ -92,7 +92,7 @@ a:hover {
 
 .footer {
     width: 100%;
-    height: 35px;
+    height: 41px;
     position: fixed;
     bottom: 0px;
     border: 1px solid #d2d2d2;
@@ -102,18 +102,18 @@ a:hover {
 }
 
 .company_info {
-    height: 50px;
+    height: 40px;
     width: 80px;
     display: inline-block;
     float: left;
     text-align: center;
     color: #666;
     font-family: 'Apple SD Gothic Neo',arial,sans-serif;
-    font-size: 10px;
+    font-size: small;
 }
 
 .user_info {
-    height: 50px;
+    height: 40px;
     margin-left: 15px;
     margin-right: 15px;
     display: inline-block;
@@ -121,7 +121,7 @@ a:hover {
     text-align: center;
     color: #666;
     font-family: 'Apple SD Gothic Neo',arial,sans-serif;
-    font-size: 10px;
+    font-size: small;
 }
 
 #header {
