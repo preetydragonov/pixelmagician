@@ -208,8 +208,8 @@ a:hover {
     overflow:hidden;
 }
 
-@media (max-width: 500px){
-.text_box{
+@media only screen and (max-width: 500px){
+#text_box{
     padding: 10px;
     display: block;
     transition: box-shadow .3s;
