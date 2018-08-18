@@ -206,7 +206,7 @@ a:hover {
     overflow:hidden;
 }
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #b7b7b7;
+    color: blue;
     opacity: 1; /* Firefox */
 }
 
