@@ -206,7 +206,7 @@ a:hover {
     overflow:hidden;
 }
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: blue;
+    color: #b7b7b7;
     opacity: 1; /* Firefox */
 }
 
@@ -218,19 +218,19 @@ a:hover {
     color: #b7b7b7;
 }
 #text_box::-webkit-input-placeholder {
-    color: #65737e;
+    color: #b7b7b7;
 }
 
 #text_box:-moz-placeholder { /* Firefox 18- */
-    color: #65737e;
+    color: #b7b7b7;
 }
 
 #text_box::-moz-placeholder {  /* Firefox 19+ */
-    color: #65737e;
+    color: #b7b7b7;
 }
 
 #text_box:-ms-input-placeholder {
-    color: #65737e;
+    color: #b7b7b7;
 }
 #text_box:focus {
     outline:none;
