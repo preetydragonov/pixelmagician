@@ -143,21 +143,39 @@ a:hover {
 }
 
 #logo {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 165px;
-    height: 92px; width: 272px;
+    position: absolute;
+    height: 92px;
+    width: 272px;
     overflow: hidden;
 }
 
-#text_and_submit {
+#logo_and_image_text_container{
+    width: 274px;
+    min-width: 300px;
+    height: 94px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin-top: 180px;
+    transform: translate(-50%, -50%);
+}
+
+#images_text {
+    color: #4285f4;
+    font: 16px/16px roboto-regular, arial, sans-serif;
+    position: absolute;
+    top: 88%;
+    left: 72%;
+    transform: translate(0%, -50%);
+}
+
+#text_and_submit_container {
     position: relative;
     height: 54px;
     width: 590px;
-    top: 20px;
     margin-left: auto;
     margin-right: auto;
+    margin-top: -30px;
 }
 
 #submit {
