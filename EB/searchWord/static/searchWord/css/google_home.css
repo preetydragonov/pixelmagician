@@ -209,6 +209,15 @@ a:hover {
 }
 
 @media only screen and (max-width: 500px){
+#logo_and_image_text_container{
+    width: 274px;
+    height: 94px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin-top: 180px;
+    transform: translate(-50%, -50%);
+}
 
 #text_and_submit_container {
     position: relative;
@@ -222,7 +231,7 @@ a:hover {
 #submit {
     position: relative;
     top: 50%;
-    left: 90%;
+    left: 88%;
     transform: translate(-50%, -50%);
     right: 30px;
 }
