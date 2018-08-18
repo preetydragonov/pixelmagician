@@ -196,6 +196,7 @@ a:hover {
 }
 
 #text_box {
+    -webkit-appearance: none;
     padding: 10px;
     display: block;
     transition: box-shadow .3s;
@@ -265,6 +266,7 @@ a:hover {
 }
 
 #text_box{
+    -webkit-appearance: none;
     padding: 10px;
     display: block;
     transition: box-shadow .3s;
