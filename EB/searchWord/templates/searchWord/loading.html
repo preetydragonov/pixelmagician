@@ -23,5 +23,9 @@
 	<script src="{% static 'searchWord/js/vlvryw.js' %}"></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js'></script>
 	<script src="{% static 'searchWord/js/color_conversion.js' %}"></script>
+	<script queryWordOnScript="{{ queryWord }}">
+                parsedQueryWord = document.currentScript.getAttribute('queryWordOnScript')
+                setTimeout(function(){location.replace("/board/"+parsedQueryWord, '_self')}, 12000)
+        </script>
     </body>
 </html>
