@@ -29,6 +29,7 @@ ALLOWED_HOSTS = ['pixelmagician.db33ujf8c5.ap-northeast-2.elasticbeanstalk.com',
 		 'pixelmagician-dev.db33ujf8c5.ap-northeast-2.elasticbeanstalk.com',
 		 'pixelmagician-stg.db33ujf8c5.ap-northeast-2.elasticbeanstalk.com',
                  '127.0.0.1',
+                 'www.loadingpage.co',
                 ]
 
 # Application definition
