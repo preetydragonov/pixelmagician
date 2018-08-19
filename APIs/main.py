@@ -55,7 +55,6 @@ def put_pixels_to_s3(event, context):
         print("Cannot get value of key 'key' from event.")
         raise exception
     try:
-        print(image_url)
         response = getResponse(image_url)
     except Exception as exception:
         print("Cannot get response from Given URL.")
@@ -105,14 +104,14 @@ def put_images_to_s3_by_using_icrawler(event, context):
 
     try:
         s3.head_object(Bucket=bucket, Key='icrawler/' + directory + '/000001.jpg')
-        print(query_word + " exists! so I will stop here.")
+        print(query_word + " exists! Sombody queried this word before. So, I will stop here and give out priviously saved images.")
         return
     except ClientError:
+        print(query_word + " does not exist! So, I will save new pixel images of it.")
         pass
 
     google_crawler = GoogleImageCrawler(downloader_threads=3, storage={'root_dir': '/tmp/' + directory})
     google_crawler.crawl(query_word, filters=dict(date=date_range_in_tuple), max_num=max_iteration)
-
     print("crawl ended")
 
     for i in list(range(1, max_iteration+1)):
