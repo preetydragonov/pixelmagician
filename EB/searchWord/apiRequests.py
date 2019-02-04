@@ -43,5 +43,5 @@ def formatDataForS3Request(data, requestType):
         return params
     
     else:
-        return null;
+        return null
 
