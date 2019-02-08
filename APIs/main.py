@@ -16,7 +16,6 @@ s3 = boto3.client('s3')
 bucket = 'searched-words'
 Lambda = boto3.client('lambda')
 
-
 def put_pixels_to_s3(event, context):
     try:
         image_url = getTargetValueFromEvent(target="image_url", event=event)
