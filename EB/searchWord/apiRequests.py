@@ -6,6 +6,7 @@ from .constants import (APPNAME,
                         URL)
 
 def putImagesToS3(data):
+    #데이터를 리퀘스트 포멧에 맞춰 변경, 후에 리퀘스트 요청.
     formattedDataForPuttingOnS3 = formatDataForS3Request(data, requestType="POST")
     requestForPutImages = urllib.request.Request(URL().PUT_IMAGES_TO_S3, formattedDataForPuttingOnS3)
     response = urllib.request.urlopen(requestForPutImages)

@@ -32,6 +32,7 @@ def loading(request, queryWord):
     template_name = (APPNAME().SEARCHWORD
                      + "/"
                      + HTML().LOADING)
+
     context = {KEY().QUERY_WORD : parsedQueryWord}
 
     return render(request,
