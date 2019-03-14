@@ -16,6 +16,7 @@ s3 = boto3.client('s3')
 bucket = 'searched-words'
 Lambda = boto3.client('lambda')
 
+#The API
 def put_pixels_to_s3(event, context):
     try:
         image_url = getTargetValueFromEvent(target="image_url", event=event)
@@ -198,7 +199,8 @@ def getImageFormat(response):
 def readResponse(response):
     return response.read()
 
-
+# Used
+# Getting url request page
 def getResponse(url):
     context = ssl._create_unverified_context()
     headers = {
@@ -286,7 +288,7 @@ def getRandomPixeledImageURLFromOriginalImageURL(requestedImage):
     #
     return key
 
-
+#Used
 def getRandomPixeledImageFromOriginalImageURL(requested_image):
     opened_image = openImage(requested_image)
     random_pixel = getRandomPixel(opened_image)
@@ -306,14 +308,14 @@ def openImage(image):
     imageInBytes = io.BytesIO(image)
     return Image.open(imageInBytes)
 
-
+#Used
 def getRandomPixel(imageInByte):
     pixels = imageInByte.load()
     width, height = imageInByte.size
     randomPixel = pixels[random.randint(0, width), random.randint(0, height)]
     return randomPixel
 
-
+#Used
 def createPixeledImageInSmallerSize(imageInByte, randomPixel):
     width, height = imageInByte.size
     rate = round(width / height, 2)
@@ -387,7 +389,7 @@ def addNewKeyValueToPayloadBody(key, value, payload):
     payload['Records'][0]['s3']['object']['body'][key] = value
     return payload
 
-
+#Used
 def getTargetValueFromEvent(target, event):
     return event['Records'][0]['s3']['object']['body'][target]
 
@@ -402,7 +404,7 @@ def createDateRangeList(yearRange):
         dateList.append(late)
     return dateList
 
-
+#Used
 def create_key_for_pixeled_image(url):
     print("__getStringAfterTheLastSlash function start__")
     print(url.rsplit('/', 6))

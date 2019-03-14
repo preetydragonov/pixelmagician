@@ -11,9 +11,7 @@ from .constants import (APPNAME,
                         HTML,
                         KEY,
                         URL)
-from .apiRequests import (putImagesToS3,
-                          getImagesFromS3)
-from .logics import (getRandomPixeledImageFromImageURL)
+from .apiRequests import triggerAPI_putImagesToS3
 
 def home(request):
     template_name = (APPNAME().SEARCHWORD
@@ -27,7 +25,7 @@ def home(request):
 
 def loading(request, queryWord):    
     parsedQueryWord = urllib.parse.unquote(queryWord)
-    putImagesToS3(parsedQueryWord)
+    triggerAPI_putImagesToS3(parsedQueryWord)
 
     template_name = (APPNAME().SEARCHWORD
                      + "/"
